@@ -10,7 +10,7 @@ export function GoogleMap() {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="aspect-video w-full">
             <iframe
-              src="https://www.google.com/maps/embed/v1/place?q=31%C2%B024'05.6%22N%2074%C2%B017'21.2%22E&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+              src="https://www.google.com/maps/embed/v1/place?q=Lahore%2C%20Pakistan&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
               width="100%"
               height="100%"
               style={{ border: 0 }}
