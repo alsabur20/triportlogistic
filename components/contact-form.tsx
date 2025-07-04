@@ -46,7 +46,15 @@ export function ContactForm() {
               <div className="flex items-start space-x-4">
                 <MapPin className="w-6 h-6 text-[#ff4800] mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Our Address</h3>
+                  <h3 className="font-semibold text-gray-900 mb-1">Our Addresses</h3>
+                  <p className="text-gray-600">
+                    20th Doha St
+                    <br />
+                    Al Nahda
+                    <br />
+                    Dubai
+                  </p>
+                  <br />
                   <p className="text-gray-600">
                     107 C1, Engineers Town
                     <br />
@@ -97,7 +105,7 @@ export function ContactForm() {
 
           {/* Contact Form */}
           <div>
-            <div className="bg-gray-50 rounded-lg p-8">
+            <div className="bg-gray-50 rounded-none p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -113,7 +121,7 @@ export function ContactForm() {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full"
+                      className="w-full rounded-none"
                     />
                   </div>
                   <div>
@@ -127,7 +135,7 @@ export function ContactForm() {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full"
+                      className="w-full rounded-none"
                     />
                   </div>
                 </div>
@@ -142,7 +150,7 @@ export function ContactForm() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full"
+                    className="w-full rounded-none"
                   />
                 </div>
 
@@ -157,7 +165,7 @@ export function ContactForm() {
                     required
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="w-full"
+                    className="w-full rounded-none"
                   />
                 </div>
 
@@ -173,11 +181,11 @@ export function ContactForm() {
                     placeholder="Please tell us about your logistics needs..."
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="w-full"
+                    className="w-full rounded-none"
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-[#ff4800] hover:bg-[#e63f00] text-white py-3">
+                <Button type="submit" className="w-full bg-[#ff4800] hover:bg-[#e63f00] text-white py-3  rounded-none">
                   Send Message
                 </Button>
               </form>

@@ -1,25 +1,22 @@
-import { Truck, Ship, Plane, Package, Warehouse, MapPin } from "lucide-react"
+import { Truck, Ship, Plane } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function ServicesSection() {
   const services = [
     {
-      icon: <Plane className="w-12 h-12 text-[#ff4800]" />,
+      icon: <Plane className="w-10 h-10 text-black" />,
       title: "Air Freight",
-      description: "Fast and reliable air cargo services for time-sensitive shipments worldwide.",
-      features: ["Express delivery", "Temperature controlled", "Dangerous goods certified"],
+      description: "Fast secure air freight solutions for high-value or urgent cargo worldwide.",
     },
     {
-      icon: <Ship className="w-12 h-12 text-[#ff4800]" />,
+      icon: <Ship className="w-10 h-10 text-black" />,
       title: "Sea Freight",
-      description: "Cost-effective ocean freight solutions for large volume shipments.",
-      features: ["Full container load", "Less container load", "Port-to-port service"],
+      description: "Our ocean freight services cover global shipping routes, providing cost-effective solutions for bulk or containerized goods with end-to-end tracking.",
     },
     {
-      icon: <Truck className="w-12 h-12 text-[#ff4800]" />,
+      icon: <Truck className="w-10 h-10 text-black" />,
       title: "Ground Transport",
-      description: "Comprehensive land transportation services across all major routes.",
-      features: ["Door-to-door delivery", "Cross-border transport", "Last-mile delivery"],
+      description: "We provide reliable land transport solutions including truckload and LTL shipping, covering regional and cross-border routes with timely delivery.",
     },
   ]
 
@@ -27,33 +24,22 @@ export function ServicesSection() {
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive logistics solutions tailored to meet your specific shipping and transportation needs.
-          </p>
+          <h2 className="text-[#ff4800] uppercase font-extrabold mb-2">Our Services</h2>
+          <p className="text-3xl md:text-5xl font-extrabold mb-4">Best Logistic Services</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="bg-gray-50 p-6 rounded-lg hover:shadow-lg transition-shadow duration-300">
-              <div className="flex justify-center mb-4">{service.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center">{service.title}</h3>
-              <p className="text-gray-600 mb-4 text-center">{service.description}</p>
-              <ul className="space-y-2 mb-6">
-                {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center text-sm text-gray-600">
-                    <div className="w-2 h-2 bg-[#ff4800] rounded-full mr-3"></div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <div className="text-center">
-                <Button
-                  variant="outline"
-                  className="border-[#ff4800] text-[#ff4800] hover:bg-[#ff4800] hover:text-white bg-transparent"
-                >
-                  Learn More
-                </Button>
+            <div key={index} className="bg-white p-0 shadow-none">
+              {/* Top bar: icon + title */}
+              <div className="bg-[#ff4800] p-4 flex items-center justify-center space-x-4">
+                {service.icon}
+                <h3 className="text-lg font-bold text-white m-0">{service.title}</h3>
+              </div>
+
+              {/* Body: description*/}
+              <div className="p-6">
+                <p className="text-gray-700 mb-4">{service.description}</p>
               </div>
             </div>
           ))}

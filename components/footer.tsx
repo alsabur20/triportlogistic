@@ -30,9 +30,21 @@ export function Footer() {
                   <p className="text-gray-300">
                     107 C1, Engineers Town,
                     <br />
-                    Lahore,
+                    Lahore
                     <br />
                     Pakistan
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-5 h-5 text-[#ff4800] mt-1 flex-shrink-0" />
+                <div>
+                  <p className="text-gray-300">
+                    20th Doha St,
+                    <br />
+                    Al Nahda
+                    <br />
+                    Dubai
                   </p>
                 </div>
               </div>

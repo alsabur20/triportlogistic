@@ -1,110 +1,107 @@
 "use client"
 
-import { useState } from "react"
-import { Star, ChevronLeft, ChevronRight } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Quote, ChevronLeft, ChevronRight } from "lucide-react"
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    company: "Global Electronics Inc.",
+    name: "Sarah Malik",
     role: "Supply Chain Manager",
+    image: "/testimonial-1.jpg",
     content:
-      "Triport Logistics has been instrumental in streamlining our international shipping operations. Their reliability and customer service are unmatched.",
-    rating: 5,
-    image: "/placeholder.svg?height=80&width=80",
+      "Triport Logistic has been a game changer for our operations. Their team is professional, responsive, and consistently delivers on time.",
   },
   {
-    name: "Michael Chen",
-    company: "Pacific Trading Co.",
+    name: "Ahmed Raza",
+    role: "E-commerce Business Owner",
+    image: "/testimonial-2.jpg",
+    content:
+      "Their logistics solutions have helped me scale my delivery network without any hassle. Highly reliable and easy to work with.",
+  },
+  {
+    name: "Emily Zhang",
+    role: "Import/Export Consultant",
+    image: "/testimonial-3.jpg",
+    content:
+      "Excellent service from start to finish. Their attention to detail and customer support really sets them apart from the rest.",
+  },
+  {
+    name: "John Patel",
     role: "Operations Director",
+    image: "/testimonial-4.jpg",
     content:
-      "We've been working with Triport Logistics for over 3 years. Their air freight services have consistently delivered our time-sensitive shipments on schedule.",
-    rating: 5,
-    image: "/placeholder.svg?height=80&width=80",
-  },
-  {
-    name: "Emma Rodriguez",
-    company: "Atlantic Manufacturing",
-    role: "Logistics Coordinator",
-    content:
-      "The tracking system and real-time updates from Triport Logistics give us complete visibility into our shipments. Highly recommended!",
-    rating: 5,
-    image: "/placeholder.svg?height=80&width=80",
+      "We've partnered with Triport Logistic for over a year now, and they've never failed to impress. Fast, safe, and efficient.",
   },
 ]
 
 export function TestimonialsSection() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+  // Auto-play effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
+    }, 5000) // Change every 5 seconds
+
+    return () => clearInterval(interval) // Clean up on unmount
+  }, [])
+
+  const prev = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
   }
 
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  const next = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
   }
+
+  const testimonial = testimonials[currentIndex]
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-16">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what our satisfied customers have to say about our services.
-          </p>
+          <h6 className="text-[#ff4800] uppercase font-extrabold mb-2">Testimonial</h6>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Our Clients Say</h2>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
-          <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
-            <div className="flex justify-center mb-6">
-              <div className="flex space-x-1">
-                {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[#ff4800] text-[#ff4800]" />
-                ))}
-              </div>
-            </div>
+        <div className="relative bg-gray-100 max-w-3xl mx-auto rounded-lg shadow-md p-8 pt-10">
+          <Quote className="w-10 h-10 text-[#ff4800] absolute top-0 right-0 transform -translate-y-1/2 -translate-x-1/2 bg-gray-100 p-2 rounded-full" />
 
-            <blockquote className="text-xl md:text-2xl text-gray-700 text-center mb-8 italic">
-              "{testimonials[currentTestimonial].content}"
-            </blockquote>
-
-            <div className="flex items-center justify-center space-x-4">
-              <img
-                src={testimonials[currentTestimonial].image || "/placeholder.svg"}
-                alt={testimonials[currentTestimonial].name}
-                className="w-16 h-16 rounded-full object-cover"
-              />
-              <div className="text-center">
-                <div className="font-semibold text-gray-900">{testimonials[currentTestimonial].name}</div>
-                <div className="text-[#ff4800] font-medium">{testimonials[currentTestimonial].role}</div>
-                <div className="text-gray-600 text-sm">{testimonials[currentTestimonial].company}</div>
-              </div>
+          <div className="flex items-center gap-4 mb-4">
+            <img
+              src={testimonial.image}
+              alt={testimonial.name}
+              className="w-16 h-16 rounded-full object-cover"
+            />
+            <div>
+              <h6 className="text-lg font-semibold">{testimonial.name}</h6>
+              <small className="text-gray-500">– {testimonial.role}</small>
             </div>
           </div>
+          <p className="text-gray-700 italic">"{testimonial.content}"</p>
 
-          {/* Navigation */}
+          {/* Navigation Arrows */}
           <button
-            onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+            onClick={prev}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white shadow-md p-2 rounded-full hover:bg-gray-100 transition"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-600" />
+            <ChevronLeft className="w-5 h-5 text-gray-700" />
           </button>
           <button
-            onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+            onClick={next}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white shadow-md p-2 rounded-full hover:bg-gray-100 transition"
           >
-            <ChevronRight className="w-6 h-6 text-gray-600" />
+            <ChevronRight className="w-5 h-5 text-gray-700" />
           </button>
 
           {/* Dots */}
-          <div className="flex justify-center mt-8 space-x-2">
-            {testimonials.map((_, index) => (
+          <div className="mt-6 flex justify-center space-x-2">
+            {testimonials.map((_, idx) => (
               <button
-                key={index}
-                onClick={() => setCurrentTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentTestimonial ? "bg-[#ff4800]" : "bg-gray-300"
-                }`}
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`w-3 h-3 rounded-full transition-colors ${currentIndex === idx ? "bg-[#ff4800]" : "bg-gray-400"
+                  }`}
               />
             ))}
           </div>

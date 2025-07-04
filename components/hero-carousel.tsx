@@ -41,13 +41,12 @@ export function HeroCarousel() {
   }
 
   return (
-    <div className="relative h-[70vh] overflow-hidden">
+    <div className="relative h-[95vh] overflow-hidden">
       {carouselItems.map((item, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
         >
           <div className="w-full h-full bg-cover bg-center relative" style={{ backgroundImage: `url(${item.image})` }}>
             {/* Overlay */}
@@ -56,11 +55,9 @@ export function HeroCarousel() {
             {/* Content */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center text-white px-4">
-                <h1 className="text-5xl md:text-7xl font-bold mb-6">TRIPORT LOGISTICS</h1>
-                <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                  Connecting the world through reliable cargo and logistics solutions. Fast, secure, and efficient
-                  transportation services worldwide.
-                </p>
+                <h1 className="text-3xl md:text-3xl font-bold mb-6 text-[#ff4800]">Safe & Faster</h1>
+                <h1 className="text-3xl md:text-5xl font-bold mb-6">Triport</h1>
+                <h1 className="text-3xl md:text-5xl font-bold mb-6">Logistics Services</h1>
               </div>
             </div>
           </div>
@@ -68,7 +65,7 @@ export function HeroCarousel() {
       ))}
 
       {/* Navigation Arrows */}
-      <button
+      {/* <button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-2 rounded-full transition-all duration-200"
       >
@@ -79,7 +76,7 @@ export function HeroCarousel() {
         className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-2 rounded-full transition-all duration-200"
       >
         <ChevronRight size={24} />
-      </button>
+      </button> */}
 
       {/* Dots Indicator */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
@@ -87,9 +84,8 @@ export function HeroCarousel() {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-200 ${
-              index === currentSlide ? "bg-[#ff4800]" : "bg-white bg-opacity-50"
-            }`}
+            className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentSlide ? "bg-[#ff4800]" : "bg-white bg-opacity-50"
+              }`}
           />
         ))}
       </div>

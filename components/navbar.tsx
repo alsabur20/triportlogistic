@@ -26,9 +26,9 @@ export function Navbar() {
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-18">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 md:py-0 py-6">
             <Link href="/" className="text-2xl font-bold text-[#ff4800]">
               <Image
                 src="/logo.png"
@@ -47,9 +47,9 @@ export function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`px-6 py-3 font-medium transition-all duration-200 ${isActive(item.href)
-                    ? "bg-[#ff4800] text-white border-b-2 border-b-black"
-                    : "bg-white text-gray-800 hover:bg-gray-100"
+                  className={`px-6 py-6 font-medium font-bold transition-all duration-200 ${isActive(item.href)
+                    ? "bg-[#ff4800] text-white"
+                    : "bg-white text-gray-800 hover:bg-gray-100 text-black"
                     }`}
                 >
                   {item.name}
@@ -60,7 +60,7 @@ export function Navbar() {
 
           {/* Get Quote Button */}
           <div className="hidden md:block">
-            <Button className="bg-[#ff4800] hover:bg-[#e63f00] text-white px-6 py-2">Get a Quote</Button>
+            <Button className="bg-[#ff4800] hover:bg-[#e63f00] text-white px-6 py-2 font-bold rounded-none">Get A Quote</Button>
           </div>
 
           {/* Mobile menu button */}
@@ -79,8 +79,8 @@ export function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-4 py-3 transition-colors duration-200 ${isActive(item.href)
-                    ? "bg-[#ff4800] text-white border-b-2 border-b-black"
+                  className={`block px-3 py-2 transition-colors duration-200 font-bold tracking-wider ${isActive(item.href)
+                    ? "bg-[#ff4800] text-white"
                     : "bg-white text-gray-800 hover:bg-gray-100"
                     }`}
                   onClick={() => setIsOpen(false)}

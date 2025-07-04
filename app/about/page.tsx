@@ -8,10 +8,8 @@ export default function About() {
     <div>
       <PageHero
         title="About Us"
-        subtitle="Your trusted partner in global logistics and cargo solutions"
         backgroundImage="/header.jpg?height=400&width=1200"
       />
-      <PageNavigation />
       <AboutSection />
       <WhyChooseUs />
     </div>

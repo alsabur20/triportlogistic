@@ -9,10 +9,8 @@ export default function Services() {
     <div>
       <PageHero
         title="Our Services"
-        subtitle="Comprehensive logistics solutions for all your shipping needs"
         backgroundImage="/header.jpg?height=400&width=1200"
       />
-      <PageNavigation />
       <ServicesSection />
       <GetQuoteSection />
       <TestimonialsSection />

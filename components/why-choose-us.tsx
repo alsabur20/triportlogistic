@@ -1,78 +1,56 @@
-import { Award, Users, Clock, Shield, Globe, Headphones } from "lucide-react"
+import Image from "next/image"
+import { Award, Users, Clock } from "lucide-react"
 
 export function WhyChooseUs() {
-  const reasons = [
+  const points = [
     {
-      icon: <Award className="w-8 h-8 text-[#ff4800]" />,
-      title: "Industry Expertise",
-      description: "Over 20 years of experience in global logistics and supply chain management.",
+      icon: <Award className="w-5 h-5 text-[#ff4800]" />,
+      text: "Best In Industry",
     },
     {
-      icon: <Users className="w-8 h-8 text-[#ff4800]" />,
-      title: "Dedicated Team",
-      description: "Professional logistics experts committed to your success and satisfaction.",
+      icon: <Clock className="w-5 h-5 text-[#ff4800]" />,
+      text: "Emergency Services",
     },
     {
-      icon: <Clock className="w-8 h-8 text-[#ff4800]" />,
-      title: "On-Time Delivery",
-      description: "99% on-time delivery rate with real-time tracking and updates.",
-    },
-    {
-      icon: <Shield className="w-8 h-8 text-[#ff4800]" />,
-      title: "Secure & Insured",
-      description: "Full insurance coverage and advanced security measures for all shipments.",
-    },
-    {
-      icon: <Globe className="w-8 h-8 text-[#ff4800]" />,
-      title: "Global Network",
-      description: "Worldwide presence with local expertise in over 100 countries.",
-    },
-    {
-      icon: <Headphones className="w-8 h-8 text-[#ff4800]" />,
-      title: "24/7 Support",
-      description: "Round-the-clock customer support and assistance whenever you need it.",
+      icon: <Users className="w-5 h-5 text-[#ff4800]" />,
+      text: "24/7 Customer Support",
     },
   ]
 
   return (
-    <section className="py-16 bg-white">
+    <section className="mb-8 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Triport Logistics?</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We stand out in the logistics industry through our commitment to excellence, reliability, and customer
-            satisfaction.
-          </p>
-        </div>
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          {/* Image */}
+          <div>
+            <Image
+              src="feature.jpg"
+              alt="Why Choose Us"
+              width={600}
+              height={400}
+              className="w-xl rounded-none shadow-md"
+            />
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reasons.map((reason, index) => (
-            <div key={index} className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow duration-300">
-              <div className="flex justify-center mb-4">{reason.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{reason.title}</h3>
-              <p className="text-gray-600">{reason.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-16 bg-gray-50 rounded-lg p-8 md:p-12">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-[#ff4800] mb-2">500+</div>
-              <div className="text-gray-600">Happy Clients</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-[#ff4800] mb-2">50K+</div>
-              <div className="text-gray-600">Successful Shipments</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-[#ff4800] mb-2">100+</div>
-              <div className="text-gray-600">Countries Served</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-[#ff4800] mb-2">99%</div>
-              <div className="text-gray-600">On-Time Delivery</div>
-            </div>
+          {/* Text Content */}
+          <div className="py-9">
+            <h6 className="text-[#ff4800] uppercase font-extrabold mb-2">Why Choose Us</h6>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
+              Faster, Safe and Trusted Logistics Services
+            </h2>
+            <p className="text-gray-700 font-normal mb-6">
+              At our core, we believe logistics should be seamless and stress-free. With years of experience and a
+              dedication to timely delivery, we offer solutions that are both reliable and cost-effective. Our team
+              ensures your goods are handled with the utmost care — every step of the way.
+            </p>
+            <ul className="space-y-3">
+              {points.map((point, index) => (
+                <li key={index} className="flex items-center text-gray-800">
+                  <span className="mr-3">{point.icon}</span>
+                  <h6 className="text-base font-medium">{point.text}</h6>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

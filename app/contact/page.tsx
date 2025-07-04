@@ -8,10 +8,8 @@ export default function Contact() {
     <div>
       <PageHero
         title="Contact Us"
-        subtitle="Get in touch with our logistics experts today"
         backgroundImage="/header.jpg?height=400&width=1200"
       />
-      <PageNavigation />
       <ContactForm />
       <GoogleMap />
     </div>
