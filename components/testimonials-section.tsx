@@ -60,7 +60,7 @@ export function TestimonialsSection() {
     <section className="bg-white py-16">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h6 className="text-[#ff4800] uppercase font-extrabold mb-2">Testimonial</h6>
+          <div className="text-[#ff4800] uppercase font-extrabold mb-2">Testimonial</div>
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Our Clients Say</h2>
         </div>
 

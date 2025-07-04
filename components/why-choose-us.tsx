@@ -34,7 +34,7 @@ export function WhyChooseUs() {
 
           {/* Text Content */}
           <div className="py-9">
-            <h6 className="text-[#ff4800] uppercase font-extrabold mb-2">Why Choose Us</h6>
+            <div className="text-[#ff4800] uppercase font-extrabold mb-2">Why Choose Us</div>
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
               Faster, Safe and Trusted Logistics Services
             </h2>

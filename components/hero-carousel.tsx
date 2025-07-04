@@ -56,8 +56,8 @@ export function HeroCarousel() {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center text-white px-4">
                 <h1 className="text-3xl md:text-3xl font-bold mb-6 text-[#ff4800]">Safe & Faster</h1>
-                <h1 className="text-3xl md:text-5xl font-bold mb-6">Triport</h1>
-                <h1 className="text-3xl md:text-5xl font-bold mb-6">Logistics Services</h1>
+                <div className="text-3xl md:text-5xl font-bold mb-6">Triport</div>
+                <div className="text-3xl md:text-5xl font-bold mb-6">Logistics Services</div>
               </div>
             </div>
           </div>

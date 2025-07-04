@@ -84,22 +84,6 @@ export function ContactForm() {
                   </p>
                 </div>
               </div>
-
-              {/* <div className="flex items-start space-x-4">
-                <Clock className="w-6 h-6 text-[#ff4800] mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Business Hours</h3>
-                  <p className="text-gray-600">
-                    Monday - Friday: 8:00 AM - 6:00 PM
-                    <br />
-                    Saturday: 9:00 AM - 4:00 PM
-                    <br />
-                    Sunday: Emergency calls only
-                    <br />
-                    <span className="text-[#ff4800] font-medium">24/7 Emergency Support Available</span>
-                  </p>
-                </div>
-              </div> */}
             </div>
           </div>
 
