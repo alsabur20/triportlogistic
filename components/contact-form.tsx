@@ -7,6 +7,16 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import { sendEmail } from "@/utils/send-email"
+
+// Define the form data type
+export interface FormData {
+  name: string
+  email: string
+  phone: string
+  subject: string
+  message: string
+}
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -17,6 +27,9 @@ export function ContactForm() {
     message: "",
   })
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
@@ -24,11 +37,36 @@ export function ContactForm() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Contact form:", formData)
-    alert("Thank you for your message! We'll get back to you soon.")
-  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    if (!formData.name || !formData.email || !formData.message) {
+      setSubmitStatus("error");
+      return;
+    }
+
+    try {
+      await sendEmail(formData);
+
+      // Clear the form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+
+      setSubmitStatus("success");
+    } catch (err) {
+      console.error("Failed to send email:", err);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section className="py-16 bg-white">
@@ -91,6 +129,19 @@ export function ContactForm() {
           <div>
             <div className="bg-gray-50 rounded-none p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+
+              {/* Status Messages */}
+              {submitStatus === "success" && (
+                <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">
+                  Message sent successfully! We'll get back to you soon.
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
+                  Failed to send message. Please try again later.
+                </div>
+              )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
@@ -169,8 +220,13 @@ export function ContactForm() {
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-[#ff4800] hover:bg-[#e63f00] text-white py-3  rounded-none">
-                  Send Message
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full bg-[#ff4800] hover:bg-[#e63f00] text-white py-3 rounded-none ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""
+                    }`}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </div>
