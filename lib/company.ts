@@ -100,7 +100,7 @@ export const company = {
     defaultTitle: "Triport Logistics | Freight Forwarding & Cargo Services in UAE & Pakistan",
     titleTemplate: "%s | Triport Logistics",
     defaultDescription:
-      "Triport Logistics offers air freight, sea freight, ground transport, and cargo forwarding services between UAE and Pakistan. 25+ years of trusted logistics expertise with offices in Dubai (ACICO Business Park) and Lahore (Engineers Town).",
+      "Global freight forwarding, air cargo, sea freight, and ground logistics by Triport Logistics. Trusted shipping solutions with offices in Dubai and Lahore.",
     ogImage: "/og-image.jpg",
     geo: {
       region: "AE-DU, PK-PB",

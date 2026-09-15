@@ -30,7 +30,11 @@ export function ServicesSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="bg-white p-0 shadow-none">
+            <div
+              key={index}
+              id={service.title.toLowerCase().replace(/\s+/g, "-")}
+              className="bg-white p-0 shadow-none scroll-mt-24"
+            >
               {/* Top bar: icon + title */}
               <div className="bg-[#ff4800] p-4 flex items-center justify-center space-x-4">
                 {service.icon}

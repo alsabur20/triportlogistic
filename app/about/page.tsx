@@ -7,7 +7,7 @@ import { Metadata } from "next"
 export const metadata: Metadata = {
   title: "About Us | 25+ Years Freight Forwarding in UAE & Pakistan",
   description:
-    "Triport Logistics is a trusted freight forwarding and cargo company with 25+ years of experience, serving businesses in the UAE, Pakistan, and international markets. Offices in Dubai and Lahore.",
+    "Trusted global freight forwarding and cargo solutions with 25+ years of expertise. Triport Logistics operates hubs in Dubai and Lahore.",
   alternates: {
     canonical: "/about",
   },

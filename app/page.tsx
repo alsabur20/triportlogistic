@@ -10,14 +10,9 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Freight Forwarding & Cargo Services in Dubai & Pakistan",
   description:
-    "Triport Logistics offers air freight, sea freight, ground transport, and cargo forwarding between Dubai, UAE and Pakistan. Get a free quote today. Offices in Dubai (ACICO Business Park) and Lahore (Engineers Town).",
+    "Global freight forwarding, air cargo, ocean shipping, and ground transport by Triport Logistics. Trusted shipping solutions with offices in Dubai and Lahore.",
   alternates: {
     canonical: "/",
-    languages: {
-      "en-AE": "https://www.triportlogistic.com",
-      "en-PK": "https://www.triportlogistic.com",
-      "x-default": "https://www.triportlogistic.com",
-    },
   },
   openGraph: {
     title: "Freight Forwarding & Cargo Services in Dubai & Pakistan | Triport Logistics",

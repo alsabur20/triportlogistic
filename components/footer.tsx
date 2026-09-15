@@ -8,8 +8,8 @@ export function Footer() {
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
+    { name: "Our Services", href: "/services" },
+    { name: "Contact Us", href: "/contact" },
   ]
 
   return (
@@ -122,7 +122,7 @@ export function Footer() {
               {company.services.map((service, index) => (
                 <li key={index}>
                   <Link
-                    href="/services"
+                    href={`/services#${service.slug}`}
                     className="text-gray-300 hover:text-[#ff4800] transition-colors duration-200 flex items-center"
                   >
                     <span className="w-2 h-2 bg-[#ff4800] rounded-full mr-3 flex-shrink-0" />
@@ -136,7 +136,7 @@ export function Footer() {
                   className="text-gray-300 hover:text-[#ff4800] transition-colors duration-200 flex items-center"
                 >
                   <span className="w-2 h-2 bg-[#ff4800] rounded-full mr-3 flex-shrink-0" />
-                  Get a Free Quote
+                  Request Free Quote
                 </Link>
               </li>
             </ul>

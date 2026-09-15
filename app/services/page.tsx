@@ -8,7 +8,7 @@ import { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Air Freight, Sea Freight & Ground Transport in UAE & Pakistan",
   description:
-    "Triport Logistics offers air freight Dubai to Pakistan, sea freight, ground transport, and cargo forwarding services. Reliable international freight forwarding from UAE and Pakistan to worldwide destinations.",
+    "Comprehensive air freight, sea freight, ground transport, and cargo forwarding worldwide by Triport Logistics. Request a free quote today.",
   alternates: {
     canonical: "/services",
   },

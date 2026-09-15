@@ -22,14 +22,12 @@ export const metadata: Metadata = {
     template: company.seo.titleTemplate,
   },
   description: company.seo.defaultDescription,
-  icons: { icon: company.favicon },
+  icons: {
+    icon: company.favicon,
+    apple: company.favicon,
+  },
   alternates: {
     canonical: "/",
-    languages: {
-      "en-AE": company.url,
-      "en-PK": company.url,
-      "x-default": company.url,
-    },
   },
   robots: {
     index: true,
@@ -182,9 +180,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${poppins.variable}`}>
       <head>
-        <link rel="alternate" hrefLang="en-ae" href={company.url} />
-        <link rel="alternate" hrefLang="en-pk" href={company.url} />
-        <link rel="alternate" hrefLang="x-default" href={company.url} />
+        <link rel="apple-touch-icon" href="/favicon.png" />
       </head>
       <body>
         <script

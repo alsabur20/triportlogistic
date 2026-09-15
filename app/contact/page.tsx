@@ -8,7 +8,7 @@ const { dubai, lahore } = company.offices
 
 export const metadata: Metadata = {
   title: "Contact Us | Freight & Cargo Inquiries in UAE & Pakistan",
-  description: `Contact ${company.name} for air freight, sea freight, ground transport, and cargo forwarding inquiries. Dubai office: ${company.contact.phoneDisplay}. Offices in ${dubai.city} (${dubai.building}) and ${lahore.city} (${lahore.street}). Get a free freight quote.`,
+  description: `Contact ${company.name} for international freight inquiries. Call ${company.contact.phoneDisplay} or visit our offices in Dubai and Lahore. 24/7 support.`,
   alternates: { canonical: "/contact" },
   openGraph: {
     title: `Contact ${company.name} | Freight Inquiries UAE & Pakistan`,
