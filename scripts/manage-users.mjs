@@ -66,3 +66,4 @@ main().catch(async (err) => {
   try { await client.end() } catch {}
   process.exit(1)
 })
+

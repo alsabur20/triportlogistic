@@ -1,5 +1,6 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
+import { cache } from 'react'
 
 export interface BlogPost {
   id: string | number
@@ -23,7 +24,7 @@ export interface BlogPost {
   metaDescription?: string
 }
 
-export async function getPublishedPosts(): Promise<BlogPost[]> {
+export const getPublishedPosts = cache(async (): Promise<BlogPost[]> => {
   try {
     if (!process.env.DATABASE_URI) {
       return getDemoPosts()
@@ -50,9 +51,9 @@ export async function getPublishedPosts(): Promise<BlogPost[]> {
     console.warn('Could not fetch posts from database, using fallback:', error)
     return getDemoPosts()
   }
-}
+})
 
-export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+export const getPostBySlug = cache(async (slug: string): Promise<BlogPost | null> => {
   try {
     if (!process.env.DATABASE_URI) {
       return getDemoPosts().find((p) => p.slug === slug) || null
@@ -82,7 +83,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     console.warn('Could not fetch post by slug, using fallback:', error)
     return getDemoPosts().find((p) => p.slug === slug) || null
   }
-}
+})
 
 // Initial high-ranking seed logistics articles for immediate SEO authority
 function getDemoPosts(): BlogPost[] {

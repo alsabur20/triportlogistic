@@ -7,6 +7,8 @@ import { getPostBySlug } from "@/lib/blog"
 import { company } from "@/lib/company"
 import { Calendar, User, Tag, ArrowLeft, MessageCircle, Phone } from "lucide-react"
 
+export const revalidate = 60 // Cache article for 60 seconds with on-demand background revalidation
+
 type Props = {
   params: Promise<{ slug: string }>
 }

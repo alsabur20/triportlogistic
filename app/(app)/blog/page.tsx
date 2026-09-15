@@ -5,6 +5,7 @@ import { Metadata } from "next"
 import { getPublishedPosts } from "@/lib/blog"
 import { company } from "@/lib/company"
 import { Calendar, ArrowRight, Tag } from "lucide-react"
+export const revalidate = 60 // Revalidate cached data at most every 60 seconds
 
 export const metadata: Metadata = {
   title: "Logistics Insights, Guides & Industry News | Triport Logistics",
