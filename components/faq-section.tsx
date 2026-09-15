@@ -1,43 +1,43 @@
 const faqs = [
   {
-    question: "How long does air cargo from Dubai to Pakistan take?",
+    question: "Which international destinations and global routes do you cover?",
     answer:
-      "Air freight from Dubai to major Pakistani cities like Lahore and Karachi typically takes 1–3 business days, depending on the destination, cargo type, and customs clearance speed. Triport Logistics works with top-tier airlines to ensure the fastest possible transit times.",
+      "Triport Logistics provides worldwide freight forwarding services connecting Asia, Europe, North America, the Middle East, and Africa. With key operational hubs in Dubai (UAE) and Lahore (Pakistan), we manage end-to-end air, sea, and land cargo to and from major commercial centers across the globe.",
   },
   {
-    question: "What is the cheapest way to ship cargo from UAE to Pakistan?",
+    question: "How long does international air freight shipping take?",
     answer:
-      "Sea freight (ocean freight) is the most cost-effective option for shipping large or heavy cargo from UAE to Pakistan. For smaller, time-sensitive shipments, air freight offers the best balance of speed and cost. Contact us for a free quote tailored to your cargo size and timeline.",
+      "Standard international air freight typically takes between 1 to 5 business days depending on the origin, destination, and customs clearance procedures. Frequent routes between key international hubs (such as UAE, Pakistan, Europe, and Asia) often arrive within 1 to 3 business days. We partner with premier commercial airlines and air cargo carriers to ensure optimal transit times.",
   },
   {
-    question: "Do you offer customs clearance services?",
+    question: "What is the most cost-effective option for shipping worldwide?",
     answer:
-      "Yes. Triport Logistics handles all customs documentation, import/export declarations, and clearance procedures for shipments in both the UAE and Pakistan. Our experienced team ensures smooth, compliant, and fast customs processing at Dubai ports and major Pakistani airports and seaports.",
+      "Ocean freight (sea freight) is the most economical solution for large volumes, bulk goods, and heavy containerized cargo (both FCL and LCL) on international routes. For time-sensitive or high-value shipments, air freight offers unmatched speed. We also offer multimodal logistics combining sea, air, and ground transport to balance speed and cost.",
   },
   {
-    question: "What documents are required for freight forwarding from Pakistan to UAE?",
+    question: "Do you handle international customs clearance and documentation?",
     answer:
-      "Standard documents include: Commercial Invoice, Packing List, Bill of Lading (sea) or Airway Bill (air), Certificate of Origin, and any product-specific permits. Our team guides you through the complete documentation process from start to finish.",
+      "Yes. Triport Logistics manages comprehensive import/export documentation and customs brokerage worldwide. Our specialists ensure full compliance with customs declarations, tariff codes, commercial invoices, certificates of origin, and inspection requirements at international airports, seaports, and cross-border checkpoints.",
   },
   {
-    question: "Do you provide door-to-door delivery from Dubai to Pakistan?",
+    question: "Do you provide international door-to-door cargo delivery?",
     answer:
-      "Yes. We offer full door-to-door freight forwarding services from any location in the UAE to addresses throughout Pakistan, including Lahore, Karachi, Islamabad, Faisalabad, and more. This includes pickup, freight, customs clearance, and last-mile delivery.",
+      "Yes. We offer complete door-to-door freight forwarding worldwide. Our service encompasses origin pickup, export documentation, international air or ocean transport, customs clearance at the destination port, and last-mile ground delivery directly to your facility or warehouse.",
   },
   {
-    question: "Can you handle sea freight from Pakistan to UAE?",
+    question: "What types of ocean freight services (FCL & LCL) do you offer?",
     answer:
-      "Absolutely. We offer sea freight (FCL and LCL) services from major Pakistani seaports — including Karachi Port and Port Qasim — to UAE ports like Jebel Ali (Dubai). Ocean freight is ideal for bulk cargo, machinery, textiles, and manufactured goods.",
+      "We provide Full Container Load (FCL: 20ft, 40ft, and high-cube containers) and Less than Container Load (LCL cargo consolidation) across all major global shipping lanes. We manage booking, port handling, container drayage, and end-to-end tracking to and from major seaports globally.",
   },
   {
-    question: "How do I get a freight quote from Triport Logistics?",
+    question: "What types of cargo can Triport Logistics transport globally?",
     answer:
-      "You can request a free freight quote by filling out our online quote form, calling us at +971 56 656 9927, emailing info@triportlogistic.com, or messaging us directly on WhatsApp. We respond within a few hours with a competitive, customized quote.",
+      "We handle a broad spectrum of commercial freight, including industrial machinery, electronics, automotive components, textiles, consumer products, temperature-sensitive goods, and oversized project cargo. We serve international manufacturers, distributors, trading companies, and e-commerce enterprises worldwide.",
   },
   {
-    question: "What types of cargo do you transport?",
+    question: "How can I request a freight quote for international shipping?",
     answer:
-      "We handle a wide range of cargo including general goods, commercial shipments, industrial equipment, textiles, electronics, perishables (with temperature control), and oversized cargo. We serve both B2B and B2C clients in the UAE and Pakistan.",
+      "You can obtain a free, competitive freight quote by submitting our online quote form, calling our direct line at +971 56 656 9927, emailing info@triportlogistic.com, or contacting our logistics desk via WhatsApp. Our team responds promptly with customized rate options based on your cargo specifications and delivery timeline.",
   },
 ]
 
@@ -68,7 +68,7 @@ export function FaqSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Everything you need to know about our freight forwarding and cargo services in UAE and Pakistan.
+            Everything you need to know about our global freight forwarding, international shipping, and logistics solutions worldwide.
           </p>
         </div>
 
@@ -106,4 +106,3 @@ export function FaqSection() {
     </section>
   )
 }
-
