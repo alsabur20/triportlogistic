@@ -47,9 +47,9 @@ export function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`px-6 py-6 font-medium font-bold transition-all duration-200 ${isActive(item.href)
+                  className={`px-6 py-6 font-bold transition-all duration-200 ${isActive(item.href)
                     ? "bg-[#ff4800] text-white"
-                    : "bg-white text-gray-800 hover:bg-gray-100 text-black"
+                    : "bg-white text-gray-800 hover:bg-gray-100"
                     }`}
                 >
                   {item.name}
