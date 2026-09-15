@@ -1,5 +1,7 @@
 import type { CollectionConfig, Where } from 'payload'
 
+import { revalidatePath } from 'next/cache'
+
 const formatSlug = (val: string): string =>
   val
     .toLowerCase()
@@ -78,6 +80,35 @@ export const Posts: CollectionConfig = {
           data.publishedAt = new Date().toISOString()
         }
         return data
+      },
+    ],
+    afterChange: [
+      ({ doc, previousDoc }) => {
+        try {
+          revalidatePath('/blog')
+          if (doc?.slug) {
+            revalidatePath(`/blog/${doc.slug}`)
+          }
+          if (previousDoc?.slug && previousDoc.slug !== doc?.slug) {
+            revalidatePath(`/blog/${previousDoc.slug}`)
+          }
+        } catch {
+          // Safe fallback if called outside Next.js request lifecycle
+        }
+        return doc
+      },
+    ],
+    afterDelete: [
+      ({ doc }) => {
+        try {
+          revalidatePath('/blog')
+          if (doc?.slug) {
+            revalidatePath(`/blog/${doc.slug}`)
+          }
+        } catch {
+          // Safe fallback
+        }
+        return doc
       },
     ],
   },

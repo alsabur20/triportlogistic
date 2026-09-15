@@ -16,6 +16,7 @@
     "@payloadcms/db-postgres": "^3.89.0",
     "@payloadcms/next": "^3.89.0",
     "@payloadcms/richtext-lexical": "^3.89.0",
+    "@payloadcms/storage-s3": "^3.89.0",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
     "@radix-ui/react-aspect-ratio": "1.1.1",

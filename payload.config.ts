@@ -8,6 +8,8 @@ import { Posts } from './collections/Posts'
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 
+import { s3Storage } from '@payloadcms/storage-s3'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -33,5 +35,35 @@ export default buildConfig({
       keepAlive: true,
     },
   }),
+  plugins: [
+    // Automatically use Cloudflare R2 / S3 storage when credentials are provided.
+    // Otherwise, falls back gracefully to local public/media/ directory.
+    ...(process.env.R2_BUCKET && process.env.R2_ACCESS_KEY_ID
+      ? [
+          s3Storage({
+            collections: {
+              media: process.env.R2_PUBLIC_URL
+                ? {
+                    generateFileURL: ({ filename, prefix }: { filename: string; prefix?: string }) => {
+                      const baseUrl = process.env.R2_PUBLIC_URL?.replace(/\/+$/, '')
+                      return prefix ? `${baseUrl}/${prefix}/${filename}` : `${baseUrl}/${filename}`
+                    },
+                  }
+                : true,
+            },
+            bucket: process.env.R2_BUCKET,
+            config: {
+              credentials: {
+                accessKeyId: process.env.R2_ACCESS_KEY_ID,
+                secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
+              },
+              region: 'auto', // Cloudflare R2 standard region
+              endpoint: process.env.R2_ENDPOINT, // e.g. https://<account_id>.r2.cloudflarestorage.com
+              forcePathStyle: true,
+            },
+          }),
+        ]
+      : []),
+  ],
 })
 
