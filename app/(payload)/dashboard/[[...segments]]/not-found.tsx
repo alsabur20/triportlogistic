@@ -1,6 +1,7 @@
 import config from '@payload-config'
 import { NotFoundPage } from '@payloadcms/next/views'
 import { importMap } from '@/app/(payload)/admin/importMap'
+import { importMap } from '@/app/(payload)/dashboard/importMap'
 
 type Args = {
   params: Promise<{

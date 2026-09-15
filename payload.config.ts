@@ -21,6 +21,9 @@ export default buildConfig({
     },
   },
   collections: [Users, Posts, Categories, Media],
+  routes: {
+    admin: '/dashboard',
+  },
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'triport-payload-secret-default-key-change-in-env',
   typescript: {
