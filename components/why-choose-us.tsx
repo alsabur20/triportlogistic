@@ -24,10 +24,11 @@ export function WhyChooseUs() {
           {/* Image */}
           <div>
             <Image
-              src="feature.jpg"
-              alt="Why Choose Us"
+              src="/feature.jpg"
+              alt="Why Choose Triport Logistics for Global Shipping"
               width={600}
               height={400}
+              sizes="(max-width: 768px) 100vw, 600px"
               className="w-xl rounded-none shadow-md"
             />
           </div>

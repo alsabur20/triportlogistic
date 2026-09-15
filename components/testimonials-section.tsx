@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react"
 
 const testimonials = [
@@ -68,9 +69,11 @@ export function TestimonialsSection() {
           <Quote className="w-10 h-10 text-[#ff4800] absolute top-0 right-0 transform -translate-y-1/2 -translate-x-1/2 bg-gray-100 p-2 rounded-full" />
 
           <div className="flex items-center gap-4 mb-4">
-            <img
+            <Image
               src={testimonial.image}
               alt={testimonial.name}
+              width={64}
+              height={64}
               className="w-16 h-16 rounded-full object-cover"
             />
             <div>

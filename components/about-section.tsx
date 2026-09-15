@@ -12,6 +12,7 @@ export function AboutSection() {
               alt="Triport Logistics team and global cargo services"
               width={500}
               height={300}
+              sizes="(max-width: 768px) 100vw, 500px"
               className="w-auto rounded-none shadow-md"
             />
             <div className="bg-[#ff4800] text-black text-center p-4 rounded-none shadow">
