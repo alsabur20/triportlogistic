@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google"
 import "./globals.css"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 const poppins = Poppins({
@@ -77,6 +78,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
       <GoogleAnalytics gaId="G-788MKX4659" />
     </html>
