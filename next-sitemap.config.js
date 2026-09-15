@@ -10,7 +10,6 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin', '/api'],
         disallow: ['/dashboard', '/admin', '/api'],
       },
     ],

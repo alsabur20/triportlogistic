@@ -19,7 +19,6 @@ export function middleware(request: NextRequest) {
       return NextResponse.next()
     }
 
-    // If already on /admin or /admin/..., let it pass through
     // Redirect legacy /admin requests on the subdomain to /dashboard
     if (pathname.startsWith('/admin')) {
       const url = request.nextUrl.clone()
@@ -32,14 +31,10 @@ export function middleware(request: NextRequest) {
       return NextResponse.next()
     }
 
-    // Rewrite admin subdomain root and nested paths to /admin...
-    // e.g. admin.triportlogistic.com/ -> /admin
-    // e.g. admin.triportlogistic.com/collections/posts -> /admin/collections/posts
     // Rewrite admin subdomain root and nested paths to /dashboard...
     // e.g. admin.triportlogistic.com/ -> /dashboard
     // e.g. admin.triportlogistic.com/collections/posts -> /dashboard/collections/posts
     const url = request.nextUrl.clone()
-    url.pathname = `/admin${pathname === '/' ? '' : pathname}`
     url.pathname = `/dashboard${pathname === '/' ? '' : pathname}`
     return NextResponse.rewrite(url)
   }
