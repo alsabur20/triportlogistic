@@ -157,7 +157,7 @@ export default async function BlogPostPage({ params }: Props) {
       <PageHero title={post.title} backgroundImage={coverUrl} />
 
       <article className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back to Blog */}
           <div className="mb-8">
             <Link
@@ -203,7 +203,7 @@ export default async function BlogPostPage({ params }: Props) {
               fill
               priority
               className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 896px"
+              sizes="(max-width: 1200px) 100vw, 1024px"
             />
           </div>
 
@@ -221,34 +221,34 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
 
           {/* CTA Box */}
-          <div className="mt-16 p-8 bg-gray-900 text-white rounded-none shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <div className="text-[#ff4800] text-sm font-bold uppercase mb-1">
+          <div className="mt-16 p-8 sm:p-10 bg-gray-900 text-white rounded-none shadow-xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+            <div className="flex-1 pr-0 lg:pr-6">
+              <div className="text-[#ff4800] text-xs sm:text-sm font-bold uppercase tracking-wider mb-2">
                 Need Fast Freight Support?
               </div>
-              <h3 className="text-2xl font-bold mb-2">
+              <h3 className="text-2xl sm:text-3xl font-extrabold mb-3 text-white">
                 Get a Customized Shipping Quote
               </h3>
-              <p className="text-gray-300 text-sm max-w-lg">
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-2xl">
                 Speak directly with our freight forwarders in Dubai and Lahore. We guarantee competitive rates and end-to-end tracking.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+            <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto shrink-0">
               <a
                 href={company.social.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-[#ff4800] hover:bg-[#e63f00] text-white font-bold px-6 py-3 transition-colors gap-2 text-sm text-center"
+                className="inline-flex items-center justify-center bg-[#ff4800] hover:bg-[#e63f00] text-white font-bold px-7 py-3.5 transition-all gap-2.5 text-sm text-center whitespace-nowrap shadow-md"
               >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp Us
+                <MessageCircle className="w-4 h-4 shrink-0" />
+                <span>WhatsApp Us</span>
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center bg-white hover:bg-gray-100 text-gray-900 font-bold px-6 py-3 transition-colors gap-2 text-sm text-center"
+                className="inline-flex items-center justify-center bg-white hover:bg-gray-100 text-gray-900 font-bold px-7 py-3.5 transition-all gap-2.5 text-sm text-center whitespace-nowrap shadow-md"
               >
-                <Phone className="w-4 h-4" />
-                Contact Office
+                <Phone className="w-4 h-4 shrink-0 text-gray-700" />
+                <span>Contact Office</span>
               </Link>
             </div>
           </div>
