@@ -9,7 +9,7 @@ export function AboutSection() {
           <div className="pb-4 lg:pb-0">
             <Image
               src="/about.jpg"
-              alt="About Us"
+              alt="Triport Logistics team and global cargo services"
               width={500}
               height={300}
               className="w-auto rounded-none shadow-md"
@@ -24,9 +24,9 @@ export function AboutSection() {
             <h6 className="text-[#ff4800] uppercase font-extrabold mb-2">
               About Us
             </h6>
-            <h1 className="text-3xl md:text-4xl font-extrabold mb-4">
-              Trusted & Faster Logistic Service Provider
-            </h1>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
+              Trusted Logistics Service Provider in the UAE and Pakistan
+            </h2>
             <p className="text-gray-700 font-normal mb-4">
               With over 25 years of industry experience, we provide reliable and
               efficient logistics solutions tailored to meet your business

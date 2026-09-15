@@ -28,7 +28,7 @@ export function GetQuoteSection() {
           {/* Left Text Section */}
           <div className="pt-16">
             <div className="text-[#ff4800] uppercase font-extrabold mb-2">Get A Quote</div>
-            <h1 className="text-3xl md:text-4xl font-extrabold mb-4">Request A Free Quote</h1>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Request A Free Quote</h2>
             <p className="text-gray-700 font-normal mb-4">
               Looking for reliable and affordable logistics solutions? Fill out the form to receive a free quote
               tailored to your business needs. Whether it's local delivery, international shipping, or freight

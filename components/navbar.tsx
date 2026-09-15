@@ -60,7 +60,9 @@ export function Navbar() {
 
           {/* Get Quote Button */}
           <div className="hidden md:block">
-            <Button className="bg-[#ff4800] hover:bg-[#e63f00] text-white px-6 py-2 font-bold rounded-none">Get A Quote</Button>
+            <Link href="/contact">
+              <Button className="bg-[#ff4800] hover:bg-[#e63f00] text-white px-6 py-2 font-bold rounded-none">Get A Quote</Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -89,7 +91,9 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="pt-2">
-                <Button className="w-full bg-[#ff4800] hover:bg-[#e63f00] text-white">Get a Quote</Button>
+                <Link href="/contact" onClick={() => setIsOpen(false)}>
+                  <Button className="w-full bg-[#ff4800] hover:bg-[#e63f00] text-white rounded-none">Get a Quote</Button>
+                </Link>
               </div>
             </div>
           </div>

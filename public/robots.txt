@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.triportlogistic.com/
+Host: https://www.triportlogistic.com
 
 # Sitemaps
 Sitemap: https://www.triportlogistic.com/sitemap.xml

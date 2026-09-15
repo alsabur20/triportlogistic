@@ -108,7 +108,7 @@ export function ContactForm() {
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Phone Number</h3>
                   <p className="text-gray-600">
-                    Main: +93 333 4448222
+                    Main: +971 56 656 9927
                   </p>
                 </div>
               </div>
