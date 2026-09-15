@@ -10,7 +10,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Freight Forwarding & Cargo Services in Dubai & Pakistan",
   description:
-    "Triport Logistics offers air freight, sea freight, ground transport, and cargo forwarding between Dubai, UAE and Pakistan. Get a free quote today. Offices in Dubai (Al Nahda) and Lahore (Engineers Town).",
+    "Triport Logistics offers air freight, sea freight, ground transport, and cargo forwarding between Dubai, UAE and Pakistan. Get a free quote today. Offices in Dubai (ACICO Business Park) and Lahore (Engineers Town).",
   alternates: {
     canonical: "/",
     languages: {

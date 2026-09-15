@@ -1,13 +1,13 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import { MapPin, Phone, Mail } from "lucide-react"
 import { sendEmail } from "@/utils/send-email"
+import { company } from "@/lib/company"
 
 // Define the form data type
 export interface FormData {
@@ -19,6 +19,8 @@ export interface FormData {
 }
 
 export function ContactForm() {
+  const { dubai, lahore } = company.offices
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,8 +29,8 @@ export function ContactForm() {
     message: "",
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -38,35 +40,26 @@ export function ContactForm() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
 
     if (!formData.name || !formData.email || !formData.message) {
-      setSubmitStatus("error");
-      return;
+      setSubmitStatus("error")
+      return
     }
 
     try {
-      await sendEmail(formData);
-
-      // Clear the form
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
-
-      setSubmitStatus("success");
+      await sendEmail(formData)
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
+      setSubmitStatus("success")
     } catch (err) {
-      console.error("Failed to send email:", err);
-      setSubmitStatus("error");
+      console.error("Failed to send email:", err)
+      setSubmitStatus("error")
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   return (
     <section className="py-16 bg-white">
@@ -81,45 +74,53 @@ export function ContactForm() {
             </p>
 
             <div className="space-y-6">
+              {/* Addresses */}
               <div className="flex items-start space-x-4">
                 <MapPin className="w-6 h-6 text-[#ff4800] mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Our Addresses</h3>
-                  <p className="text-gray-600">
-                    20th Doha St
-                    <br />
-                    Al Nahda
-                    <br />
-                    Dubai
-                  </p>
-                  <br />
-                  <p className="text-gray-600">
-                    107 C1, Engineers Town
-                    <br />
-                    Lahore
-                    <br />
-                    Pakistan
-                  </p>
+                <div className="space-y-3">
+                  <h3 className="font-semibold text-gray-900">Our Offices</h3>
+                  <div>
+                    <p className="text-sm font-medium text-gray-700 mb-1">{dubai.label}</p>
+                    <p className="text-gray-600 text-sm">
+                      {dubai.building},<br />
+                      {dubai.city}, {dubai.country}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-700 mb-1">{lahore.label}</p>
+                    <p className="text-gray-600 text-sm">
+                      {lahore.building}, {lahore.street},<br />
+                      {lahore.city}, {lahore.country}
+                    </p>
+                  </div>
                 </div>
               </div>
 
+              {/* Phone */}
               <div className="flex items-start space-x-4">
                 <Phone className="w-6 h-6 text-[#ff4800] mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Phone Number</h3>
-                  <p className="text-gray-600">
-                    Main: +971 56 656 9927
-                  </p>
+                  <a
+                    href={`tel:${company.contact.phone}`}
+                    className="text-gray-600 hover:text-[#ff4800] transition-colors"
+                  >
+                    {company.contact.phoneDisplay}
+                  </a>
                 </div>
               </div>
 
+              {/* Email */}
               <div className="flex items-start space-x-4">
                 <Mail className="w-6 h-6 text-[#ff4800] mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Email Address</h3>
-                  <p className="text-gray-600">
-                    General: info@triportlogistic.com
-                  </p>
+                  <a
+                    href={`mailto:${company.contact.email}`}
+                    className="text-gray-600 hover:text-[#ff4800] transition-colors"
+                  >
+                    {company.contact.email}
+                  </a>
                 </div>
               </div>
             </div>
@@ -130,13 +131,11 @@ export function ContactForm() {
             <div className="bg-gray-50 rounded-none p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
 
-              {/* Status Messages */}
               {submitStatus === "success" && (
                 <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">
-                  Message sent successfully! We'll get back to you soon.
+                  Message sent successfully! We&apos;ll get back to you soon.
                 </div>
               )}
-
               {submitStatus === "error" && (
                 <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
                   Failed to send message. Please try again later.
@@ -223,8 +222,9 @@ export function ContactForm() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full bg-[#ff4800] hover:bg-[#e63f00] text-white py-3 rounded-none ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""
-                    }`}
+                  className={`w-full bg-[#ff4800] hover:bg-[#e63f00] text-white py-3 rounded-none ${
+                    isSubmitting ? "opacity-75 cursor-not-allowed" : ""
+                  }`}
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>

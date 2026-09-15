@@ -1,181 +1,152 @@
 import { PageHero } from "@/components/page-hero"
-import { PageNavigation } from "@/components/page-navigation"
 import { ContactForm } from "@/components/contact-form"
 import { GoogleMap } from "@/components/google-map"
 import { Metadata } from "next"
+import { company } from "@/lib/company"
+
+const { dubai, lahore } = company.offices
 
 export const metadata: Metadata = {
   title: "Contact Us | Freight & Cargo Inquiries in UAE & Pakistan",
-  description:
-    "Contact Triport Logistics for air freight, sea freight, ground transport, and cargo forwarding inquiries. Offices in Dubai, UAE (+971 56 656 9927) and Lahore, Pakistan. Get a free freight quote.",
-  alternates: {
-    canonical: "/contact",
-  },
+  description: `Contact ${company.name} for air freight, sea freight, ground transport, and cargo forwarding inquiries. Dubai office: ${company.contact.phoneDisplay}. Offices in ${dubai.city} (${dubai.building}) and ${lahore.city} (${lahore.street}). Get a free freight quote.`,
+  alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact Triport Logistics | Freight Inquiries UAE & Pakistan",
-    description:
-      "Reach Triport Logistics for all cargo and freight forwarding inquiries. Offices in Dubai (Al Nahda) and Lahore (Engineers Town). Available 24/7.",
-    url: "https://www.triportlogistic.com/contact",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Contact Triport Logistics - Freight Forwarding in UAE and Pakistan",
-      },
-    ],
+    title: `Contact ${company.name} | Freight Inquiries UAE & Pakistan`,
+    description: `Reach ${company.name} for all cargo and freight forwarding inquiries. Offices in ${dubai.city} (${dubai.building}) and ${lahore.city} (${lahore.street}). Available 24/7.`,
+    url: `${company.url}/contact`,
+    images: [{ url: company.seo.ogImage, width: 1200, height: 630, alt: `Contact ${company.name} - Freight Forwarding in UAE and Pakistan` }],
   },
 }
-
 
 export default function Contact() {
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://www.triportlogistic.com",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Contact",
-        item: "https://www.triportlogistic.com/contact",
-      },
+      { "@type": "ListItem", position: 1, name: "Home", item: company.url },
+      { "@type": "ListItem", position: 2, name: "Contact", item: `${company.url}/contact` },
     ],
   }
 
   const dubaiOfficeJsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://www.triportlogistic.com/#dubai-office",
-    name: "Triport Logistics Dubai",
-    description:
-      "Triport Logistics Dubai office — freight forwarding, air cargo, sea freight, and customs clearance services in the UAE.",
-    url: "https://www.triportlogistic.com",
-    telephone: "+971566569927",
-    email: "info@triportlogistic.com",
-    image: "https://www.triportlogistic.com/og-image.jpg",
+    "@id": `${company.url}/#dubai-office`,
+    name: dubai.name,
+    description: `${company.name} Dubai office — freight forwarding, air cargo, sea freight, and customs clearance services in the UAE.`,
+    url: company.url,
+    telephone: company.contact.phone,
+    email: company.contact.email,
+    image: company.ogImage,
     priceRange: "$$",
-    currenciesAccepted: "AED, USD",
+    currenciesAccepted: dubai.currencies,
     paymentAccepted: "Cash, Bank Transfer",
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "09:00",
-        closes: "18:00",
+        dayOfWeek: dubai.hours.weekdays.days,
+        opens: dubai.hours.weekdays.opens,
+        closes: dubai.hours.weekdays.closes,
       },
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: "Saturday",
-        opens: "09:00",
-        closes: "14:00",
+        opens: dubai.hours.saturday.opens,
+        closes: dubai.hours.saturday.closes,
       },
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: "ACICO Business Park",
-      addressLocality: "Dubai",
-      addressRegion: "Dubai",
-      addressCountry: "AE",
+      streetAddress: dubai.building,
+      addressLocality: dubai.city,
+      addressRegion: dubai.region,
+      addressCountry: dubai.countryCode,
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: "25.25785",
-      longitude: "55.33351",
+      latitude: dubai.geo.latitude,
+      longitude: dubai.geo.longitude,
     },
     areaServed: [
-      { "@type": "Country", name: "United Arab Emirates" },
-      { "@type": "Country", name: "Pakistan" },
+      { "@type": "Country", name: dubai.country },
+      { "@type": "Country", name: lahore.country },
       { "@type": "Country", name: "International" },
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Freight & Logistics Services Dubai",
+      name: `Freight & Logistics Services ${dubai.city}`,
       itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Air Freight Dubai" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sea Freight UAE" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Cargo Forwarding Dubai" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Customs Clearance UAE" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Air Freight ${dubai.city}` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Sea Freight ${dubai.country}` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Cargo Forwarding ${dubai.city}` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Customs Clearance ${dubai.country}` } },
       ],
     },
-    sameAs: ["https://wa.me/971566569927"],
+    sameAs: [company.social.whatsapp],
   }
 
   const lahoreOfficeJsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://www.triportlogistic.com/#lahore-office",
-    name: "Triport Logistics Lahore",
-    description:
-      "Triport Logistics Lahore office — freight forwarding, air cargo, sea freight, and ground transport services in Pakistan.",
-    url: "https://www.triportlogistic.com",
-    telephone: "+971566569927",
-    email: "info@triportlogistic.com",
-    image: "https://www.triportlogistic.com/og-image.jpg",
+    "@id": `${company.url}/#lahore-office`,
+    name: lahore.name,
+    description: `${company.name} Lahore office — freight forwarding, air cargo, sea freight, and ground transport services in Pakistan.`,
+    url: company.url,
+    telephone: company.contact.phone,
+    email: company.contact.email,
+    image: company.ogImage,
     priceRange: "$$",
-    currenciesAccepted: "PKR, USD",
+    currenciesAccepted: lahore.currencies,
     paymentAccepted: "Cash, Bank Transfer",
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "09:00",
-        closes: "18:00",
+        dayOfWeek: lahore.hours.weekdays.days,
+        opens: lahore.hours.weekdays.opens,
+        closes: lahore.hours.weekdays.closes,
       },
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: "Saturday",
-        opens: "09:00",
-        closes: "14:00",
+        opens: lahore.hours.saturday.opens,
+        closes: lahore.hours.saturday.closes,
       },
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: "107 C1, Engineers Town",
-      addressLocality: "Lahore",
-      addressRegion: "Punjab",
-      addressCountry: "PK",
+      streetAddress: `${lahore.building}, ${lahore.street}`,
+      addressLocality: lahore.city,
+      addressRegion: lahore.region,
+      addressCountry: lahore.countryCode,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: lahore.geo.latitude,
+      longitude: lahore.geo.longitude,
     },
     areaServed: [
-      { "@type": "Country", name: "Pakistan" },
-      { "@type": "Country", name: "United Arab Emirates" },
+      { "@type": "Country", name: lahore.country },
+      { "@type": "Country", name: dubai.country },
       { "@type": "Country", name: "International" },
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Freight & Logistics Services Lahore",
+      name: `Freight & Logistics Services ${lahore.city}`,
       itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Air Freight Pakistan" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sea Freight Pakistan" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ground Transport Pakistan" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Cargo Forwarding Lahore" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Air Freight ${lahore.country}` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Sea Freight ${lahore.country}` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Ground Transport ${lahore.country}` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Cargo Forwarding ${lahore.city}` } },
       ],
     },
   }
 
   return (
     <div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(dubaiOfficeJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(lahoreOfficeJsonLd) }}
-      />
-      <PageHero
-        title="Contact Us"
-        backgroundImage="/header.jpg?height=400&width=1200"
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dubaiOfficeJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(lahoreOfficeJsonLd) }} />
+      <PageHero title="Contact Us" backgroundImage="/header.jpg?height=400&width=1200" />
       <ContactForm />
       <GoogleMap />
     </div>

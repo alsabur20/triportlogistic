@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Triport Logistics | 25+ Years Freight Forwarding in UAE & Pakistan",
     description:
-      "Learn about Triport Logistics — a trusted freight and cargo company with offices in Dubai (Al Nahda) and Lahore (Engineers Town) serving UAE, Pakistan, and international markets for 25+ years.",
+      "Learn about Triport Logistics — a trusted freight and cargo company with offices in Dubai (ACICO Business Park) and Lahore (Engineers Town) serving UAE, Pakistan, and international markets for 25+ years.",
     url: "https://www.triportlogistic.com/about",
     images: [
       {
