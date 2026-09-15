@@ -136,10 +136,15 @@ const organizationJsonLd = {
     { "@type": "Country", name: "Pakistan" },
     { "@type": "Country", name: "Worldwide" },
   ],
-  knowsAbout: company.services.map((s) => s.name).concat([
-    "Freight Forwarding", "Customs Clearance", "Warehousing",
-    "Supply Chain Management", "International Shipping", "Cargo from Dubai to Pakistan",
-  ]),
+  knowsAbout: [
+    ...company.services.map((s) => s.name),
+    "Freight Forwarding",
+    "Customs Clearance",
+    "Warehousing",
+    "Supply Chain Management",
+    "International Shipping",
+    "Cargo from Dubai to Pakistan",
+  ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Logistics & Freight Services",

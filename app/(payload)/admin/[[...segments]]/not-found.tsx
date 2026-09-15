@@ -15,3 +15,4 @@ const NotFound = ({ params, searchParams }: Args) =>
   NotFoundPage({ config, params, searchParams, importMap })
 
 export default NotFound
+

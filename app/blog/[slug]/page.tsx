@@ -274,12 +274,10 @@ function RenderLexicalContent({ content }: { content: any }) {
           )
         }
         if (node.type === "heading") {
-          const TagName = (node.tag || "h2") as keyof JSX.IntrinsicElements
-          return (
-            <TagName key={idx} className="font-bold my-4">
-              {node.children?.map((child: any, cIdx: number) => child.text).join("")}
-            </TagName>
-          )
+          const text = node.children?.map((child: any) => child.text).join("")
+          if (node.tag === "h1") return <h1 key={idx} className="font-bold my-4 text-3xl">{text}</h1>
+          if (node.tag === "h3") return <h3 key={idx} className="font-bold my-4 text-xl">{text}</h3>
+          return <h2 key={idx} className="font-bold my-4 text-2xl">{text}</h2>
         }
         return null
       })}
@@ -331,3 +329,4 @@ function ArticleFallbackContent({ slug }: { slug: string }) {
     </div>
   )
 }
+
