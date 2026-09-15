@@ -258,6 +258,118 @@ export default async function BlogPostPage({ params }: Props) {
   )
 }
 
+function RenderLexicalNode({ node, idx }: { node: any; idx: number }) {
+  if (!node) return null
+
+  // Text leaf node with formatting support
+  if (node.type === "text") {
+    let content: React.ReactNode = node.text || ""
+    const format = node.format || 0
+    // Bitwise flags: 1 = bold, 2 = italic, 8 = underline, 16 = strikethrough, 32 = code
+    if (format & 1) content = <strong>{content}</strong>
+    if (format & 2) content = <em>{content}</em>
+    if (format & 8) content = <u>{content}</u>
+    if (format & 16) content = <s>{content}</s>
+    if (format & 32) content = <code className="bg-gray-100 text-red-600 px-1 py-0.5 rounded text-sm">{content}</code>
+    return <span key={idx}>{content}</span>
+  }
+
+  // Links
+  if (node.type === "link") {
+    const url = node.fields?.url || node.url || "#"
+    const target = node.fields?.newTab ? "_blank" : undefined
+    const rel = target ? "noopener noreferrer" : undefined
+    return (
+      <a
+        key={idx}
+        href={url}
+        target={target}
+        rel={rel}
+        className="text-[#ff4800] hover:underline font-semibold"
+      >
+        {node.children?.map((child: any, cIdx: number) => (
+          <RenderLexicalNode key={cIdx} node={child} idx={cIdx} />
+        ))}
+      </a>
+    )
+  }
+
+  // Headings
+  if (node.type === "heading") {
+    const children = node.children?.map((child: any, cIdx: number) => (
+      <RenderLexicalNode key={cIdx} node={child} idx={cIdx} />
+    ))
+    if (node.tag === "h1") return <h1 key={idx} className="text-3xl font-extrabold text-gray-900 mt-8 mb-4">{children}</h1>
+    if (node.tag === "h3") return <h3 key={idx} className="text-xl font-bold text-gray-900 mt-6 mb-3">{children}</h3>
+    return <h2 key={idx} className="text-2xl font-bold text-gray-900 mt-8 mb-4">{children}</h2>
+  }
+
+  // Paragraph
+  if (node.type === "paragraph") {
+    return (
+      <p key={idx} className="mb-4 text-gray-700 leading-relaxed">
+        {node.children?.map((child: any, cIdx: number) => (
+          <RenderLexicalNode key={cIdx} node={child} idx={cIdx} />
+        ))}
+      </p>
+    )
+  }
+
+  // Lists
+  if (node.type === "list") {
+    const isOrdered = node.listType === "number"
+    const ListTag = isOrdered ? "ol" : "ul"
+    return (
+      <ListTag
+        key={idx}
+        className={`mb-6 pl-6 space-y-2 text-gray-700 ${isOrdered ? "list-decimal" : "list-disc"}`}
+      >
+        {node.children?.map((child: any, cIdx: number) => (
+          <RenderLexicalNode key={cIdx} node={child} idx={cIdx} />
+        ))}
+      </ListTag>
+    )
+  }
+
+  // List item
+  if (node.type === "listitem") {
+    return (
+      <li key={idx} className="leading-relaxed">
+        {node.children?.map((child: any, cIdx: number) => (
+          <RenderLexicalNode key={cIdx} node={child} idx={cIdx} />
+        ))}
+      </li>
+    )
+  }
+
+  // Blockquote
+  if (node.type === "quote") {
+    return (
+      <blockquote
+        key={idx}
+        className="border-l-4 border-[#ff4800] pl-4 italic text-gray-700 my-6 bg-gray-50 py-3 rounded-r"
+      >
+        {node.children?.map((child: any, cIdx: number) => (
+          <RenderLexicalNode key={cIdx} node={child} idx={cIdx} />
+        ))}
+      </blockquote>
+    )
+  }
+
+  // Fallback for container nodes with children
+  if (node.children) {
+    return (
+      <div key={idx}>
+        {node.children.map((child: any, cIdx: number) => (
+          <RenderLexicalNode key={cIdx} node={child} idx={cIdx} />
+        ))}
+      </div>
+    )
+  }
+
+  return null
+}
+
 function RenderLexicalContent({ content }: { content: any }) {
   if (!content || !content.root || !content.root.children) {
     return null
@@ -265,22 +377,9 @@ function RenderLexicalContent({ content }: { content: any }) {
 
   return (
     <div>
-      {content.root.children.map((node: any, idx: number) => {
-        if (node.type === "paragraph") {
-          return (
-            <p key={idx} className="mb-4">
-              {node.children?.map((child: any, cIdx: number) => child.text).join("")}
-            </p>
-          )
-        }
-        if (node.type === "heading") {
-          const text = node.children?.map((child: any) => child.text).join("")
-          if (node.tag === "h1") return <h1 key={idx} className="font-bold my-4 text-3xl">{text}</h1>
-          if (node.tag === "h3") return <h3 key={idx} className="font-bold my-4 text-xl">{text}</h3>
-          return <h2 key={idx} className="font-bold my-4 text-2xl">{text}</h2>
-        }
-        return null
-      })}
+      {content.root.children.map((node: any, idx: number) => (
+        <RenderLexicalNode key={idx} node={node} idx={idx} />
+      ))}
     </div>
   )
 }

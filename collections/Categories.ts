@@ -4,9 +4,14 @@ export const Categories: CollectionConfig = {
   slug: 'categories',
   admin: {
     useAsTitle: 'name',
+    // Hide Categories from sidebar for authors so their dashboard is focused only on Posts
+    hidden: ({ user }) => user?.role !== 'admin',
   },
   access: {
-    read: () => true,
+    read: () => true, // Allowed so authors can select categories in the post editor
+    create: ({ req: { user } }) => user?.role === 'admin',
+    update: ({ req: { user } }) => user?.role === 'admin',
+    delete: ({ req: { user } }) => user?.role === 'admin',
   },
   fields: [
     {
