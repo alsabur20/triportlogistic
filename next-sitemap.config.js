@@ -10,6 +10,7 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
+        disallow: ['/dashboard', '/admin', '/api'],
       },
     ],
   },
@@ -18,6 +19,7 @@ module.exports = {
     const priorities = {
       '/': 1.0,
       '/services': 0.9,
+      '/blog': 0.85,
       '/about': 0.8,
       '/contact': 0.7,
     }
@@ -25,6 +27,7 @@ module.exports = {
     const changefreqs = {
       '/': 'weekly',
       '/services': 'weekly',
+      '/blog': 'weekly',
       '/about': 'monthly',
       '/contact': 'monthly',
     }
