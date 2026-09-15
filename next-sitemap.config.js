@@ -39,4 +39,30 @@ module.exports = {
       lastmod: new Date().toISOString(),
     }
   },
+  additionalPaths: async (config) => {
+    const result = []
+    try {
+      if (process.env.DATABASE_URI) {
+        const { Client } = require('pg')
+        const client = new Client({ connectionString: process.env.DATABASE_URI })
+        await client.connect()
+        const res = await client.query(
+          "SELECT slug, updated_at FROM posts WHERE status = 'published'"
+        )
+        await client.end()
+        for (const row of res.rows) {
+          result.push({
+            loc: `/blog/${row.slug}`,
+            changefreq: 'weekly',
+            priority: 0.8,
+            lastmod: row.updated_at ? new Date(row.updated_at).toISOString() : new Date().toISOString(),
+          })
+        }
+      }
+    } catch (err) {
+      // Safe fallback if database is not reachable at build time
+      console.warn('Could not query published posts for sitemap:', err.message)
+    }
+    return result
+  },
 }
