@@ -44,6 +44,7 @@ export const Users: CollectionConfig = {
     {
       name: 'role',
       type: 'select',
+      index: true,
       required: true,
       defaultValue: 'author',
       options: [

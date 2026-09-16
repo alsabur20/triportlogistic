@@ -144,6 +144,7 @@ export const Posts: CollectionConfig = {
     {
       name: 'status',
       type: 'select',
+      index: true,
       defaultValue: 'draft',
       options: [
         { label: 'Draft', value: 'draft' },
@@ -156,6 +157,7 @@ export const Posts: CollectionConfig = {
     {
       name: 'publishedAt',
       type: 'date',
+      index: true,
       admin: {
         position: 'sidebar',
         description: 'Auto-filled when published if left blank.',
