@@ -1,33 +1,32 @@
 import { PageHero } from "@/components/page-hero"
-import { PageNavigation } from "@/components/page-navigation"
 import { ServicesSection } from "@/components/services-section"
 import { GetQuoteSection } from "@/components/get-quote-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
+import { company } from "@/lib/company"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Air Freight, Sea Freight & Ground Transport in UAE & Pakistan",
+  title: "Commercial Freight Services Dubai",
   description:
-    "Comprehensive air freight, sea freight, ground transport, and cargo forwarding worldwide by Triport Logistics. Request a free quote today.",
+    "Comprehensive B2B freight forwarding services in Dubai, UAE. International ocean container shipping (FCL/LCL), air cargo, Mirsal II customs clearance, and 3PL warehousing.",
   alternates: {
     canonical: "/services",
   },
   openGraph: {
-    title: "Air Freight, Sea Freight & Ground Transport | UAE & Pakistan | Triport Logistics",
+    title: "Ocean Freight, Air Cargo & Customs Clearance in Dubai UAE | Triport Logistics",
     description:
-      "Air cargo, ocean freight, and land transport services between UAE and Pakistan. Get a free freight quote from Triport Logistics.",
+      "Enterprise logistics solutions connecting Dubai with over 150 international trade lanes. FCL/LCL sea shipping, air charters, and GCC cross-border road transport.",
     url: "https://www.triportlogistic.com/services",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/hero-ocean.jpg",
         width: 1200,
         height: 630,
-        alt: "Triport Logistics - Air Freight, Sea Freight & Ground Transport Services",
+        alt: "Triport Logistics - Commercial Freight Services in Dubai UAE",
       },
     ],
   },
 }
-
 
 export default function Services() {
   const breadcrumbJsonLd = {
@@ -52,78 +51,24 @@ export default function Services() {
   const servicesJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Triport Logistics Freight & Cargo Services",
-    description: "Comprehensive freight and logistics services between UAE, Pakistan and worldwide destinations.",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        item: {
-          "@type": "Service",
-          name: "Air Freight",
-          description:
-            "Fast, secure air freight solutions for high-value or time-sensitive cargo. We handle air cargo from Dubai to Pakistan, Lahore, Karachi, and international destinations.",
-          provider: {
-            "@type": "Organization",
-            name: "Triport Logistics",
-            url: "https://www.triportlogistic.com",
-          },
-          areaServed: ["United Arab Emirates", "Pakistan", "International"],
-          url: "https://www.triportlogistic.com/services",
+    name: "Triport Logistics Commercial Freight & Supply Chain Services",
+    description: "End-to-end commercial logistics services connecting Dubai and UAE with global trade routes.",
+    itemListElement: company.services.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Service",
+        name: service.name,
+        description: service.description,
+        provider: {
+          "@type": "Organization",
+          name: company.name,
+          url: company.url,
         },
+        areaServed: ["United Arab Emirates", "Saudi Arabia", "Oman", "Worldwide"],
+        url: `${company.url}/services/${service.slug}`,
       },
-      {
-        "@type": "ListItem",
-        position: 2,
-        item: {
-          "@type": "Service",
-          name: "Sea Freight",
-          description:
-            "Cost-effective ocean freight services covering global shipping routes with FCL and LCL options. Ideal for bulk cargo between UAE and Pakistan.",
-          provider: {
-            "@type": "Organization",
-            name: "Triport Logistics",
-            url: "https://www.triportlogistic.com",
-          },
-          areaServed: ["United Arab Emirates", "Pakistan", "International"],
-          url: "https://www.triportlogistic.com/services",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        item: {
-          "@type": "Service",
-          name: "Ground Transport",
-          description:
-            "Reliable land transport including truckload and LTL shipping across regional and cross-border routes in UAE and Pakistan.",
-          provider: {
-            "@type": "Organization",
-            name: "Triport Logistics",
-            url: "https://www.triportlogistic.com",
-          },
-          areaServed: ["United Arab Emirates", "Pakistan"],
-          url: "https://www.triportlogistic.com/services",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        item: {
-          "@type": "Service",
-          name: "Cargo Forwarding",
-          description:
-            "End-to-end cargo forwarding and freight brokerage services. We handle all documentation, customs clearance, and last-mile delivery.",
-          provider: {
-            "@type": "Organization",
-            name: "Triport Logistics",
-            url: "https://www.triportlogistic.com",
-          },
-          areaServed: ["United Arab Emirates", "Pakistan", "International"],
-          url: "https://www.triportlogistic.com/services",
-        },
-      },
-    ],
+    })),
   }
 
   return (
@@ -137,8 +82,8 @@ export default function Services() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }}
       />
       <PageHero
-        title="Our Services"
-        backgroundImage="/header.jpg?height=400&width=1200"
+        title="Commercial Logistics Services"
+        backgroundImage="/hero-ocean.jpg"
       />
       <ServicesSection />
       <GetQuoteSection />

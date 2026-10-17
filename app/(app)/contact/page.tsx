@@ -4,17 +4,17 @@ import { GoogleMap } from "@/components/google-map"
 import { Metadata } from "next"
 import { company } from "@/lib/company"
 
-const { dubai, lahore } = company.offices
+const { dubai, jebelAliHub } = company.offices
 
 export const metadata: Metadata = {
-  title: "Contact Us | Freight & Cargo Inquiries in UAE & Pakistan",
-  description: `Contact ${company.name} for international freight inquiries. Call ${company.contact.phoneDisplay} or visit our offices in Dubai and Lahore. 24/7 support.`,
+  title: "Contact & Freight Rate Desk Dubai",
+  description: `Contact ${company.name} for international freight inquiries, ocean container rates, air cargo, and UAE customs clearance. Call ${company.contact.phoneDisplay} or visit our Dubai offices.`,
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: `Contact ${company.name} | Freight Inquiries UAE & Pakistan`,
-    description: `Reach ${company.name} for all cargo and freight forwarding inquiries. Offices in ${dubai.city} (${dubai.building}) and ${lahore.city} (${lahore.street}). Available 24/7.`,
+    title: `Contact ${company.name} | Commercial Freight Desk Dubai UAE`,
+    description: `Connect with ${company.name} for global ocean, air, and overland shipping inquiries. Offices in Dubai (${dubai.building}) and JAFZA Port Hub. Available 24/7.`,
     url: `${company.url}/contact`,
-    images: [{ url: company.seo.ogImage, width: 1200, height: 630, alt: `Contact ${company.name} - Freight Forwarding in UAE and Pakistan` }],
+    images: [{ url: company.seo.ogImage, width: 1200, height: 630, alt: `Contact ${company.name} - Freight Forwarding in Dubai UAE` }],
   },
 }
 
@@ -33,14 +33,14 @@ export default function Contact() {
     "@type": "LocalBusiness",
     "@id": `${company.url}/#dubai-office`,
     name: dubai.name,
-    description: `${company.name} Dubai office — freight forwarding, air cargo, sea freight, and customs clearance services in the UAE.`,
+    description: `${company.name} Dubai Global HQ — freight forwarding, ocean container shipping, air cargo, and customs clearance services in the UAE.`,
     url: company.url,
     telephone: company.contact.phone,
     email: company.contact.email,
     image: company.ogImage,
     priceRange: "$$",
     currenciesAccepted: dubai.currencies,
-    paymentAccepted: "Cash, Bank Transfer",
+    paymentAccepted: "Cash, Bank Transfer, Letter of Credit (LC)",
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -60,6 +60,7 @@ export default function Contact() {
       streetAddress: dubai.building,
       addressLocality: dubai.city,
       addressRegion: dubai.region,
+      postalCode: dubai.postalCode,
       addressCountry: dubai.countryCode,
     },
     geo: {
@@ -68,85 +69,60 @@ export default function Contact() {
       longitude: dubai.geo.longitude,
     },
     areaServed: [
-      { "@type": "Country", name: dubai.country },
-      { "@type": "Country", name: lahore.country },
-      { "@type": "Country", name: "International" },
+      { "@type": "Country", name: "United Arab Emirates" },
+      { "@type": "Country", name: "Saudi Arabia" },
+      { "@type": "Country", name: "Oman" },
+      { "@type": "Country", name: "Worldwide" },
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: `Freight & Logistics Services ${dubai.city}`,
+      name: `Commercial Freight & Logistics Services Dubai`,
       itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Air Freight ${dubai.city}` } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Sea Freight ${dubai.country}` } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Cargo Forwarding ${dubai.city}` } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Customs Clearance ${dubai.country}` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ocean Freight (FCL/LCL)" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "International Air Freight" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Dubai Customs Clearance (Mirsal II)" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "3PL Warehousing & Distribution" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "GCC Cross-Border Road Trucking" } },
       ],
     },
-    sameAs: [company.social.whatsapp],
+    sameAs: [company.social.whatsapp, company.social.linkedin],
   }
 
-  const lahoreOfficeJsonLd = {
+  const jebelAliOfficeJsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": `${company.url}/#lahore-office`,
-    name: lahore.name,
-    description: `${company.name} Lahore office — freight forwarding, air cargo, sea freight, and ground transport services in Pakistan.`,
+    "@id": `${company.url}/#jebel-ali-hub`,
+    name: jebelAliHub.name,
+    description: `${company.name} JAFZA operations hub — port container drayage, container cross-docking, and DP World terminal operations in Jebel Ali, Dubai.`,
     url: company.url,
     telephone: company.contact.phone,
     email: company.contact.email,
     image: company.ogImage,
-    priceRange: "$$",
-    currenciesAccepted: lahore.currencies,
-    paymentAccepted: "Cash, Bank Transfer",
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: lahore.hours.weekdays.days,
-        opens: lahore.hours.weekdays.opens,
-        closes: lahore.hours.weekdays.closes,
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: "Saturday",
-        opens: lahore.hours.saturday.opens,
-        closes: lahore.hours.saturday.closes,
-      },
-    ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: `${lahore.building}, ${lahore.street}`,
-      addressLocality: lahore.city,
-      addressRegion: lahore.region,
-      addressCountry: lahore.countryCode,
+      streetAddress: jebelAliHub.building,
+      addressLocality: jebelAliHub.city,
+      addressRegion: jebelAliHub.region,
+      postalCode: jebelAliHub.postalCode,
+      addressCountry: jebelAliHub.countryCode,
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: lahore.geo.latitude,
-      longitude: lahore.geo.longitude,
+      latitude: jebelAliHub.geo.latitude,
+      longitude: jebelAliHub.geo.longitude,
     },
     areaServed: [
-      { "@type": "Country", name: lahore.country },
-      { "@type": "Country", name: dubai.country },
-      { "@type": "Country", name: "International" },
+      { "@type": "Country", name: "United Arab Emirates" },
+      { "@type": "Country", name: "Worldwide" },
     ],
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: `Freight & Logistics Services ${lahore.city}`,
-      itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Air Freight ${lahore.country}` } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Sea Freight ${lahore.country}` } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Ground Transport ${lahore.country}` } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: `Cargo Forwarding ${lahore.city}` } },
-      ],
-    },
   }
 
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dubaiOfficeJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(lahoreOfficeJsonLd) }} />
-      <PageHero title="Contact Us" backgroundImage="/header.jpg?height=400&width=1200" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jebelAliOfficeJsonLd) }} />
+      <PageHero title="Contact Our Dubai Freight Desk" backgroundImage="/hero-air.jpg" />
       <ContactForm />
       <GoogleMap />
     </div>

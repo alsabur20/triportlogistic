@@ -1,7 +1,7 @@
 export function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/971566569927?text=Hello%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20logistics%20services."
+      href="https://wa.me/971566569927?text=Hello%20Triport%20Logistics%20Team%2C%20I%20am%20inquiring%20about%20a%20commercial%20freight%20quote%20(Company%20Name%2C%20Cargo%20Type%2C%20Origin%20%26%20Destination)."
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with Triport Logistics on WhatsApp"

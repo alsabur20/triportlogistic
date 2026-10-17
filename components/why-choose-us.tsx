@@ -1,57 +1,76 @@
 import Image from "next/image"
-import { Award, Users, Clock } from "lucide-react"
+import { ShieldCheck, Clock, Award, Headphones, MapPin, CheckCircle } from "lucide-react"
 
 export function WhyChooseUs() {
   const points = [
     {
-      icon: <Award className="w-5 h-5 text-[#ff4800]" />,
-      text: "Best In Industry",
+      icon: <Award className="w-6 h-6 text-[#ff4800]" />,
+      title: "Direct Carrier Contracts",
+      desc: "Guaranteed space protection and negotiated spot rates with global ocean and air carriers.",
     },
     {
-      icon: <Clock className="w-5 h-5 text-[#ff4800]" />,
-      text: "Emergency Services",
+      icon: <Clock className="w-6 h-6 text-[#ff4800]" />,
+      title: "Expedited Customs Clearance",
+      desc: "Automated Mirsal II Dubai Customs declarations and green-channel clearance in 4-12 hours.",
     },
     {
-      icon: <Users className="w-5 h-5 text-[#ff4800]" />,
-      text: "24/7 Customer Support",
+      icon: <ShieldCheck className="w-6 h-6 text-[#ff4800]" />,
+      title: "Comprehensive Marine Insurance",
+      desc: "Complete bonded custody and full-value cargo risk mitigation from origin to destination.",
+    },
+    {
+      icon: <Headphones className="w-6 h-6 text-[#ff4800]" />,
+      title: "Dedicated B2B Freight Specialists",
+      desc: "Single point of contact for tracking, documentation, port dues, and milestone reporting.",
     },
   ]
 
   return (
-    <section className="mb-8 bg-gray-100">
+    <section className="py-20 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          {/* Image */}
-          <div>
+        <div className="grid lg:grid-cols-2 gap-14 items-center">
+          {/* Visual Side */}
+          <div className="order-2 lg:order-1 relative aspect-[4/3] w-full overflow-hidden shadow-xl border border-gray-200">
             <Image
-              src="/feature.jpg"
-              alt="Why Choose Triport Logistics for Global Shipping"
-              width={600}
-              height={400}
-              sizes="(max-width: 768px) 100vw, 600px"
-              className="w-xl rounded-none shadow-md"
+              src="/service-customs.jpg"
+              alt="Why Choose Triport Logistics for commercial freight forwarding in Dubai"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 600px"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-950/70 via-transparent to-transparent flex items-end p-6">
+              <div className="text-white">
+                <span className="text-xs uppercase font-extrabold text-[#ff4800] tracking-wider">
+                  Dubai Customs Compliance
+                </span>
+                <p className="text-sm font-semibold text-gray-200 mt-1">
+                  On-site port inspection and manifest clearance at Jebel Ali Port &amp; DXB Cargo Village.
+                </p>
+              </div>
+            </div>
           </div>
 
-          {/* Text Content */}
-          <div className="py-9">
-            <div className="text-[#ff4800] uppercase font-extrabold mb-2">Why Choose Us</div>
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
-              Faster, Safe and Trusted Logistics Services
+          {/* Editorial Content */}
+          <div className="order-1 lg:order-2">
+            <span className="text-[#ff4800] uppercase font-extrabold text-xs sm:text-sm tracking-wider">
+              The Triport Advantage
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-2 mb-6 leading-tight tracking-tight">
+              Predictable, Compliant &amp; Cost-Optimized Logistics
             </h2>
-            <p className="text-gray-700 font-normal mb-6">
-              At our core, we believe logistics should be seamless and stress-free. With years of experience and a
-              dedication to timely delivery, we offer solutions that are both reliable and cost-effective. Our team
-              ensures your goods are handled with the utmost care — every step of the way.
+            <p className="text-gray-700 text-base sm:text-lg font-normal mb-8 leading-relaxed">
+              In international commercial shipping, delays and unexpected port demurrage erode profitability. Triport Logistics eliminates supply chain uncertainty by combining strategic Dubai port proximity, deep regulatory expertise, and automated freight visibility.
             </p>
-            <ul className="space-y-3">
-              {points.map((point, index) => (
-                <li key={index} className="flex items-center text-gray-800">
-                  <span className="mr-3">{point.icon}</span>
-                  <h6 className="text-base font-medium">{point.text}</h6>
-                </li>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              {points.map((pt, idx) => (
+                <div key={idx} className="bg-white p-5 border border-gray-200 shadow-sm">
+                  <div className="mb-3">{pt.icon}</div>
+                  <h3 className="text-base font-bold text-gray-900 mb-1">{pt.title}</h3>
+                  <p className="text-gray-600 text-xs leading-relaxed">{pt.desc}</p>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </div>
