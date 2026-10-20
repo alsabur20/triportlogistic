@@ -3,7 +3,7 @@ import { MapPin, Phone, Mail, MessageCircle, ShieldCheck, Globe, Anchor } from "
 import { company } from "@/lib/company"
 
 export function Footer() {
-  const { dubai, jebelAliHub } = company.offices
+  const { dubai, jebelAliHub, pakistan, germany } = company.offices
 
   const quickLinks = [
     { name: "Home", href: "/" },
@@ -33,14 +33,14 @@ export function Footer() {
                 TRIPORT <span className="text-[#ff4800]">LOGISTICS</span>
               </span>
               <p className="text-gray-400 text-xs sm:text-sm mt-3 leading-relaxed">
-                Global B2B Freight Forwarding, Ocean &amp; Air Cargo, UAE Customs Clearance &amp; 3PL Warehousing headquartered in Dubai, UAE.
+                Global B2B Freight Forwarding, Ocean &amp; Air Cargo, UAE Customs Clearance &amp; 3PL Warehousing connecting the UAE, Pakistan, Europe, and over 150 trade lanes.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3.5">
               {/* Dubai HQ */}
               <div className="flex items-start space-x-3">
-                <MapPin className="w-4 h-4 text-[#ff4800] mt-1 shrink-0" />
+                <MapPin className="w-4 h-4 text-[#ff4800] mt-0.5 shrink-0" />
                 <div className="text-xs text-gray-300">
                   <p className="font-bold text-white mb-0.5">{dubai.name}</p>
                   <p>{dubai.building}, {dubai.city}, {dubai.country}</p>
@@ -49,21 +49,45 @@ export function Footer() {
 
               {/* JAFZA Hub */}
               <div className="flex items-start space-x-3">
-                <Anchor className="w-4 h-4 text-[#ff4800] mt-1 shrink-0" />
+                <Anchor className="w-4 h-4 text-[#ff4800] mt-0.5 shrink-0" />
                 <div className="text-xs text-gray-300">
                   <p className="font-bold text-white mb-0.5">{jebelAliHub.name}</p>
                   <p>{jebelAliHub.building}, {jebelAliHub.city}, {jebelAliHub.country}</p>
                 </div>
               </div>
 
+              {/* Pakistan Office */}
+              <div className="flex items-start space-x-3">
+                <Globe className="w-4 h-4 text-[#ff4800] mt-0.5 shrink-0" />
+                <div className="text-xs text-gray-300">
+                  <p className="font-bold text-white mb-0.5">{pakistan.name}</p>
+                  <p>{pakistan.building}, {pakistan.city}, {pakistan.country}</p>
+                  <p className="text-[#ff4800] mt-0.5 font-semibold">
+                    Tel: <a href={`tel:${pakistan.phone}`} className="hover:underline">{pakistan.phoneDisplay}</a>
+                  </p>
+                </div>
+              </div>
+
+              {/* Germany Desk */}
+              <div className="flex items-start space-x-3">
+                <Globe className="w-4 h-4 text-[#ff4800] mt-0.5 shrink-0" />
+                <div className="text-xs text-gray-300">
+                  <p className="font-bold text-white mb-0.5">{germany.name}</p>
+                  <p>{germany.building}, {germany.city}, {germany.country}</p>
+                  <p className="text-[#ff4800] mt-0.5 font-semibold">
+                    Email: <a href={`mailto:${germany.email}`} className="hover:underline">{germany.email}</a>
+                  </p>
+                </div>
+              </div>
+
               {/* Direct Phone */}
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 pt-1">
                 <Phone className="w-4 h-4 text-[#ff4800] shrink-0" />
                 <a
                   href={`tel:${company.contact.phone}`}
-                  className="text-xs text-gray-300 hover:text-[#ff4800] transition-colors"
+                  className="text-xs text-gray-200 font-semibold hover:text-[#ff4800] transition-colors"
                 >
-                  {company.contact.phoneDisplay} (24/7 Operations)
+                  {company.contact.phoneDisplay} (Direct Calling)
                 </a>
               </div>
 

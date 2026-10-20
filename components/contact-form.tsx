@@ -5,12 +5,12 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { MapPin, Phone, Mail, MessageCircle, Anchor, Building2, Send, CheckCircle2, ShieldCheck, Zap } from "lucide-react"
+import { MapPin, Phone, Mail, MessageCircle, Anchor, Building2, Send, CheckCircle2, ShieldCheck, Zap, Globe } from "lucide-react"
 import { company } from "@/lib/company"
 import { sendEmail } from "@/utils/send-email"
 
 export function ContactForm() {
-  const { dubai, jebelAliHub } = company.offices
+  const { dubai, jebelAliHub, pakistan, germany } = company.offices
 
   const [formData, setFormData] = useState({
     name: "",
@@ -71,7 +71,7 @@ export function ContactForm() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#ff4800]/10 text-[#ff4800] text-xs font-bold uppercase tracking-wider mb-3">
               <Building2 className="w-4 h-4" />
-              <span>Dubai Logistics Headquarters</span>
+              <span>Global Freight Network</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
@@ -79,16 +79,16 @@ export function ContactForm() {
             </h2>
 
             <p className="text-gray-600 text-base leading-relaxed mb-8">
-              Discuss your supply chain requirements, request bespoke container rates, or schedule customs brokerage clearance with our Dubai specialists.
+              Discuss your supply chain requirements, request bespoke container rates, or schedule customs brokerage clearance with our regional specialists.
             </p>
 
-            <div className="space-y-6">
+            <div className="space-y-5">
               {/* Dubai Global HQ */}
               <div className="flex items-start space-x-4 p-4 bg-gray-50 border border-gray-200">
                 <MapPin className="w-6 h-6 text-[#ff4800] mt-1 shrink-0" />
                 <div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base">{dubai.name}</h3>
-                  <p className="text-xs text-[#ff4800] font-semibold mt-0.5">Corporate &amp; Commercial Rate Desk</p>
+                  <p className="text-xs text-[#ff4800] font-semibold mt-0.5">Global Corporate Headquarters · UAE</p>
                   <p className="text-gray-600 text-xs sm:text-sm mt-1">
                     {dubai.building}, {dubai.city}, {dubai.country}
                   </p>
@@ -101,7 +101,7 @@ export function ContactForm() {
                 <Anchor className="w-6 h-6 text-[#ff4800] mt-1 shrink-0" />
                 <div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base">{jebelAliHub.name}</h3>
-                  <p className="text-xs text-[#ff4800] font-semibold mt-0.5">DP World Container Port Operations</p>
+                  <p className="text-xs text-[#ff4800] font-semibold mt-0.5">DP World Container Port Operations · UAE</p>
                   <p className="text-gray-600 text-xs sm:text-sm mt-1">
                     {jebelAliHub.building}, {jebelAliHub.city}, {jebelAliHub.country}
                   </p>
@@ -109,33 +109,62 @@ export function ContactForm() {
                 </div>
               </div>
 
-              {/* Direct Phone */}
-              <div className="flex items-start space-x-4">
-                <Phone className="w-5 h-5 text-[#ff4800] mt-1 shrink-0" />
+              {/* Pakistan Office */}
+              <div className="flex items-start space-x-4 p-4 bg-gray-50 border border-gray-200">
+                <Building2 className="w-6 h-6 text-[#ff4800] mt-1 shrink-0" />
                 <div>
-                  <h4 className="font-bold text-gray-900 text-sm">Commercial Desk &amp; Inquiries</h4>
-                  <a
-                    href={`tel:${company.contact.phone}`}
-                    className="text-gray-700 hover:text-[#ff4800] text-sm font-semibold transition-colors"
-                  >
-                    {company.contact.phoneDisplay}
-                  </a>
-                  <p className="text-gray-500 text-xs">Direct line &amp; WhatsApp</p>
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base">{pakistan.name}</h3>
+                  <p className="text-xs text-[#ff4800] font-semibold mt-0.5">{pakistan.label}</p>
+                  <p className="text-gray-600 text-xs sm:text-sm mt-1">
+                    {pakistan.building}, {pakistan.city}, {pakistan.country}
+                  </p>
+                  <p className="text-gray-700 text-xs mt-1">
+                    Direct Phone: <a href={`tel:${pakistan.phone}`} className="font-semibold text-gray-900 hover:text-[#ff4800]">{pakistan.phoneDisplay}</a>
+                  </p>
                 </div>
               </div>
 
-              {/* Email */}
-              <div className="flex items-start space-x-4">
-                <Mail className="w-5 h-5 text-[#ff4800] mt-1 shrink-0" />
+              {/* Germany European Desk */}
+              <div className="flex items-start space-x-4 p-4 bg-gray-50 border border-gray-200">
+                <Globe className="w-6 h-6 text-[#ff4800] mt-1 shrink-0" />
                 <div>
-                  <h4 className="font-bold text-gray-900 text-sm">Procurement &amp; Quotes Email</h4>
-                  <a
-                    href={`mailto:${company.contact.email}`}
-                    className="text-gray-700 hover:text-[#ff4800] text-sm font-semibold transition-colors"
-                  >
-                    {company.contact.email}
-                  </a>
-                  <p className="text-gray-500 text-xs">Response within 2 business hours</p>
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base">{germany.name}</h3>
+                  <p className="text-xs text-[#ff4800] font-semibold mt-0.5">{germany.label}</p>
+                  <p className="text-gray-600 text-xs sm:text-sm mt-1">
+                    {germany.building}, {germany.city}, {germany.country}
+                  </p>
+                  <p className="text-gray-700 text-xs mt-1">
+                    Europe Desk Email: <a href={`mailto:${germany.email}`} className="font-semibold text-gray-900 hover:text-[#ff4800]">{germany.email}</a>
+                  </p>
+                </div>
+              </div>
+
+              {/* Direct Phone & Email */}
+              <div className="grid sm:grid-cols-2 gap-4 pt-2">
+                <div className="flex items-start space-x-3 p-3 bg-gray-50 border border-gray-200">
+                  <Phone className="w-5 h-5 text-[#ff4800] mt-0.5 shrink-0" />
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-xs">Direct Line (UAE)</h4>
+                    <a
+                      href={`tel:${company.contact.phone}`}
+                      className="text-gray-800 hover:text-[#ff4800] text-xs sm:text-sm font-semibold transition-colors"
+                    >
+                      {company.contact.phoneDisplay}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3 p-3 bg-gray-50 border border-gray-200">
+                  <Mail className="w-5 h-5 text-[#ff4800] mt-0.5 shrink-0" />
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-xs">Procurement Email</h4>
+                    <a
+                      href={`mailto:${company.contact.email}`}
+                      className="text-gray-800 hover:text-[#ff4800] text-xs sm:text-sm font-semibold transition-colors"
+                    >
+                      {company.contact.email}
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

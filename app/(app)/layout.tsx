@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   },
 }
 
-const { dubai, jebelAliHub } = company.offices
+const { dubai, jebelAliHub, pakistan, germany } = company.offices
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
@@ -100,9 +100,21 @@ const organizationJsonLd = {
     {
       "@type": "ContactPoint",
       telephone: company.contact.phone,
-      contactType: "customer support",
-      areaServed: ["AE", "SA", "OM", "QA", "KW", "BH", "Global"],
-      availableLanguage: ["English", "Arabic"],
+      contactType: "customer support & direct calls",
+      areaServed: ["AE", "SA", "OM", "QA", "KW", "BH", "PK", "DE", "Global"],
+      availableLanguage: ["English", "Arabic", "Urdu", "German"],
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: pakistan.phone,
+      contactType: "Pakistan operations desk",
+      areaServed: ["PK", "Global"],
+    },
+    {
+      "@type": "ContactPoint",
+      email: germany.email,
+      contactType: "Europe operations desk",
+      areaServed: ["DE", "EU", "Global"],
     },
     {
       "@type": "ContactPoint",
@@ -134,6 +146,30 @@ const organizationJsonLd = {
         addressRegion: jebelAliHub.region,
         postalCode: jebelAliHub.postalCode,
         addressCountry: jebelAliHub.countryCode,
+      },
+    },
+    {
+      "@type": "Place",
+      name: pakistan.name,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: pakistan.building,
+        addressLocality: pakistan.city,
+        addressRegion: pakistan.region,
+        postalCode: pakistan.postalCode,
+        addressCountry: pakistan.countryCode,
+      },
+    },
+    {
+      "@type": "Place",
+      name: germany.name,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: germany.building,
+        addressLocality: germany.city,
+        addressRegion: germany.region,
+        postalCode: germany.postalCode,
+        addressCountry: germany.countryCode,
       },
     },
   ],

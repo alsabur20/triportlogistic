@@ -117,11 +117,48 @@ export default function Contact() {
     ],
   }
 
+  const pakistanOfficeJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${company.url}/#pakistan-office`,
+    name: company.offices.pakistan.name,
+    description: `${company.name} Pakistan operations office — commercial logistics, customs processing, and regional trade coordination.`,
+    url: company.url,
+    telephone: company.offices.pakistan.phone,
+    email: company.offices.pakistan.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: company.offices.pakistan.building,
+      addressLocality: company.offices.pakistan.city,
+      addressRegion: company.offices.pakistan.region,
+      addressCountry: company.offices.pakistan.countryCode,
+    },
+  }
+
+  const germanyDeskJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${company.url}/#germany-desk`,
+    name: company.offices.germany.name,
+    description: `${company.name} Europe operations desk — European trade forwarding, air cargo connections via Frankfurt, and ocean freight logistics.`,
+    url: company.url,
+    email: company.offices.germany.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: company.offices.germany.building,
+      addressLocality: company.offices.germany.city,
+      addressRegion: company.offices.germany.region,
+      addressCountry: company.offices.germany.countryCode,
+    },
+  }
+
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dubaiOfficeJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jebelAliOfficeJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pakistanOfficeJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(germanyDeskJsonLd) }} />
       <PageHero title="Contact Our Dubai Freight Desk" backgroundImage="/hero-air.jpg" />
       <ContactForm />
       <GoogleMap />
