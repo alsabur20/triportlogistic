@@ -1,12 +1,38 @@
-# *
+# robots.txt for Triport Logistics (https://www.triportlogistic.com)
+
+# Universal crawlers
 User-agent: *
 Allow: /
-Disallow: /dashboard
 Disallow: /admin
-Disallow: /api
+Disallow: /dashboard
+Disallow: /api/
 
-# Host
+# AI Search & Retrieval Engines (AEO / GEO Optimization)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Canonical Host
 Host: https://www.triportlogistic.com
 
-# Sitemaps
+# XML Sitemaps
 Sitemap: https://www.triportlogistic.com/sitemap.xml

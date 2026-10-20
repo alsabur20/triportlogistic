@@ -5,20 +5,29 @@ import { ServicesSection } from "@/components/services-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { WhyChooseUs } from "@/components/why-choose-us"
 import { FaqSection } from "@/components/faq-section"
+import { company } from "@/lib/company"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Freight Forwarding & Cargo Services in Dubai & Pakistan",
+  title: "Global Freight Forwarding & Cargo Logistics in Dubai UAE",
   description:
-    "Global freight forwarding, air cargo, ocean shipping, and ground transport by Triport Logistics. Trusted shipping solutions with offices in Dubai and Lahore.",
+    "Premier B2B freight forwarding and supply chain solutions in Dubai, UAE. Ocean container shipping (FCL/LCL), air cargo, customs clearance, and warehousing.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Freight Forwarding & Cargo Services in Dubai & Pakistan | Triport Logistics",
+    title: "Global Freight Forwarding & Cargo Logistics in Dubai UAE | Triport Logistics",
     description:
-      "Air freight, sea freight & ground transport between UAE and Pakistan. 25+ years trusted logistics. Offices in Dubai & Lahore.",
+      "Direct carrier contracts, space protection, and rapid customs clearance through Jebel Ali Port & DXB Airport. Connecting the UAE with over 150 international trade lanes.",
     url: "https://www.triportlogistic.com/",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Triport Logistics - Global Freight Forwarding Hub in Dubai UAE",
+      },
+    ],
   },
 }
 
@@ -27,9 +36,9 @@ const homepageJsonLd = {
   "@type": "WebPage",
   "@id": "https://www.triportlogistic.com/#webpage",
   url: "https://www.triportlogistic.com",
-  name: "Freight Forwarding & Cargo Services in Dubai & Pakistan | Triport Logistics",
+  name: "Global Freight Forwarding & Cargo Logistics in Dubai UAE | Triport Logistics",
   description:
-    "Triport Logistics provides air freight, sea freight, ground transport, and cargo forwarding services between UAE and Pakistan.",
+    "Triport Logistics is a premier B2B freight forwarding and supply chain solutions provider in Dubai, UAE. International ocean freight, air cargo, UAE customs clearance, and 3PL warehousing.",
   isPartOf: {
     "@id": "https://www.triportlogistic.com/#website",
   },
@@ -51,8 +60,8 @@ export default function Home() {
       />
       <HeroCarousel />
       <AboutSection />
-      <GetQuoteSection />
       <ServicesSection />
+      <GetQuoteSection />
       <WhyChooseUs />
       <TestimonialsSection />
       <FaqSection />

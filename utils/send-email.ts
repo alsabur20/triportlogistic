@@ -1,23 +1,33 @@
-import { FormData } from '@/components/contact-form';
+export interface LeadFormData {
+  name: string
+  email: string
+  phone?: string
+  companyName?: string
+  service?: string
+  subject?: string
+  message?: string
+}
 
-export function sendEmail(data: FormData): Promise<{ message: string }> {
-    const apiEndpoint = '/api/email';
+export interface SendEmailResponse {
+  success: boolean
+  refId?: string
+  message: string
+}
 
-    return new Promise((resolve, reject) => {
-        fetch(apiEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => resolve(data))
-            .catch(error => reject(error));
-    });
+export async function sendEmail(data: LeadFormData): Promise<SendEmailResponse> {
+  const apiEndpoint = '/api/email'
+
+  const response = await fetch(apiEndpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to dispatch inquiry')
+  }
+
+  return response.json()
 }

@@ -56,8 +56,8 @@ Click **Create New** to open the two-panel article canvas:
 ![Fig 3.1: New Article Canvas](./images/05_create_post_empty.png)
 
 ### Field Guide:
-1. **Title (Required):** Enter an engaging, keyword-focused headline (e.g., *Top 5 Mistakes to Avoid in Dubai to Pakistan Air Cargo Shipping*).
-2. **Slug (Automatic):** Auto-generated from your title (e.g., `top-5-mistakes-to-avoid-in-dubai-to-pakistan-air-cargo-shipping`).
+1. **Title (Required):** Enter an engaging, keyword-focused headline (e.g., *Top 5 Mistakes to Avoid in China to Dubai Freight Forwarding*).
+2. **Slug (Automatic):** Auto-generated from your title (e.g., `top-5-mistakes-to-avoid-in-china-to-dubai-freight-forwarding`).
 3. **Excerpt (Required):** 1–2 sentences summarizing the article (under 200 characters). This snippet appears on blog listing cards and search engine previews.
 4. **Category (Required):** Select the appropriate vertical from the dropdown:
 

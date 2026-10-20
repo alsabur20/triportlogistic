@@ -8,7 +8,7 @@ import { Calendar, ArrowRight, Tag } from "lucide-react"
 export const revalidate = 60 // Revalidate cached data at most every 60 seconds
 
 export const metadata: Metadata = {
-  title: "Logistics Insights, Guides & Industry News | Triport Logistics",
+  title: "Logistics Insights & Trade Guides",
   description:
     "Explore expert logistics guides, air freight tips, ocean shipping advice, and international trade insights from the specialists at Triport Logistics.",
   alternates: {
@@ -60,7 +60,7 @@ export default async function BlogPage() {
       />
       <PageHero
         title="Logistics Insights & Guides"
-        backgroundImage="/header.jpg"
+        backgroundImage="/hero-ocean.jpg"
       />
 
       <section className="py-16 bg-gray-50">
