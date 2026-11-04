@@ -5,7 +5,7 @@ import nodemailer from 'nodemailer'
  * Triport Logistics — Commercial Lead Dispatch & Auto-Acknowledgment Engine
  * 1. Dispatches lead alert to Triport Operations (info@triportlogistic.com / TO_EMAIL)
  * 2. Automatically sends a branded confirmation / acknowledgment email to the customer
- * 3. Safe fallback: Logs lead and returns 200 OK even if SMTP credentials are pending in dev
+ * 3. Returns an error when SMTP delivery is not configured or fails
  */
 
 export async function POST(request: NextRequest) {
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     const refId = `TL-${Math.floor(100000 + Math.random() * 900000)}`
     const inquirySubject = subject || `Commercial Freight Inquiry [Ref: ${refId}] - ${companyName || name}`
 
-    const adminEmail = process.env.TO_EMAIL || process.env.MY_EMAIL || 'info@triportlogistic.com'
+    const adminEmail = 'info@triportlogistic.com'
     const smtpUser = process.env.MY_EMAIL || process.env.EMAIL_USER
     const smtpPass = process.env.MY_PASSWORD || process.env.EMAIL_PASS
 
@@ -96,64 +96,58 @@ export async function POST(request: NextRequest) {
     // Check for SMTP configuration (Supports custom host or Gmail)
     const smtpHost = process.env.SMTP_HOST
     const smtpPort = process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : 587
-    const hasSmtpConfig = (smtpHost && smtpUser && smtpPass) || (smtpUser && smtpPass)
+    if (!smtpUser || !smtpPass) {
+      console.error('[EMAIL DISPATCH ERROR]: SMTP credentials are not configured')
+      return NextResponse.json({ error: 'Email service is not configured.' }, { status: 503 })
+    }
 
-    if (hasSmtpConfig && smtpUser && smtpPass) {
-      try {
-        const transport = smtpHost
-          ? nodemailer.createTransport({
-              host: smtpHost,
-              port: smtpPort,
-              secure: smtpPort === 465,
-              auth: {
-                user: smtpUser,
-                pass: smtpPass,
-              },
-            })
-          : nodemailer.createTransport({
-              service: 'gmail',
-              auth: {
-                user: smtpUser,
-                pass: smtpPass,
-              },
-            })
-
-        // 1. Send notification to admin/operations team
-        await transport.sendMail({
-          from: `"Triport Lead Desk" <${smtpUser}>`,
-          to: adminEmail,
-          replyTo: email || undefined,
-          subject: inquirySubject,
-          html: adminLeadHtml,
-        })
-
-        // 2. Send automated acknowledgment email back to customer if valid email provided
-        if (email && email.includes('@')) {
-          await transport.sendMail({
-            from: `"Triport Logistics Dubai" <${smtpUser}>`,
-            to: email,
-            subject: `Inquiry Received [Ref: ${refId}] — Triport Logistics Dubai`,
-            html: customerAckHtml,
+    try {
+      const transport = smtpHost
+        ? nodemailer.createTransport({
+            host: smtpHost,
+            port: smtpPort,
+            secure: smtpPort === 465,
+            auth: {
+              user: smtpUser,
+              pass: smtpPass,
+            },
           })
-        }
-        console.log(`[EMAIL DISPATCH SUCCESS] Ref: ${refId} -> Sent to Admin (${adminEmail}) and Customer (${email})`)
-      } catch (smtpErr) {
-        console.warn('[EMAIL DISPATCH ERROR]: Could not connect to mail server:', smtpErr)
+        : nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: smtpUser,
+              pass: smtpPass,
+            },
+          })
+
+      // Send every inquiry to the operations inbox.
+      await transport.sendMail({
+        from: `"Triport Lead Desk" <${smtpUser}>`,
+        to: adminEmail,
+        replyTo: email || undefined,
+        subject: inquirySubject,
+        html: adminLeadHtml,
+      })
+
+      // Send an automated acknowledgment to the customer when an email is provided.
+      if (email && email.includes('@')) {
+        await transport.sendMail({
+          from: `"Triport Logistics Dubai" <${smtpUser}>`,
+          to: email,
+          subject: `Inquiry Received [Ref: ${refId}] — Triport Logistics Dubai`,
+          html: customerAckHtml,
+        })
       }
-    } else {
-      console.log(`\n============================================================`)
-      console.log(`[LOCAL DEV NOTICE] Lead inquiry received! Ref: ${refId}`)
-      console.log(`  Name: ${name} | Service: ${service} | Email: ${email} | Phone: ${phone}`)
-      console.log(`  NOTE: To deliver real emails to inboxes on localhost, create a .env.local file with:`)
-      console.log(`  EMAIL_USER="your-email@gmail.com"`)
-      console.log(`  EMAIL_PASS="your-16-char-gmail-app-password"`)
-      console.log(`============================================================\n`)
+      console.log(`[EMAIL DISPATCH SUCCESS] Ref: ${refId} -> Sent to Admin (${adminEmail}) and Customer (${email})`)
+    } catch (smtpErr) {
+      console.error('[EMAIL DISPATCH ERROR]: Could not deliver inquiry email:', smtpErr)
+      return NextResponse.json({ error: 'Unable to send the inquiry right now.' }, { status: 502 })
     }
 
     return NextResponse.json({
       success: true,
       refId,
-      message: `Your inquiry has been logged successfully (Ref: #${refId}). A confirmation email has been dispatched.`,
+      message: `Your inquiry has been sent to ${adminEmail} (Ref: #${refId}).`,
     })
   } catch (error: any) {
     console.error('Email route error:', error)
