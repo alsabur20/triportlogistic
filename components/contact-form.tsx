@@ -24,6 +24,7 @@ export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [refId, setRefId] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -35,6 +36,7 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitError(null)
 
     try {
       const res = await sendEmail({
@@ -50,9 +52,7 @@ export function ContactForm() {
       setRefId(res.refId || `TL-${Math.floor(100000 + Math.random() * 900000)}`)
       setSubmitted(true)
     } catch (err) {
-      // Graceful local fallback with generated reference ID
-      setRefId(`TL-${Math.floor(100000 + Math.random() * 900000)}`)
-      setSubmitted(true)
+      setSubmitError(err instanceof Error ? err.message : "Unable to send your inquiry right now. Please try again.")
     } finally {
       setIsSubmitting(false)
     }
@@ -231,6 +231,11 @@ export function ContactForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {submitError && (
+                  <p role="alert" className="border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+                    {submitError}
+                  </p>
+                )}
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
