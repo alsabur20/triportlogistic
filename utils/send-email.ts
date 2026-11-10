@@ -15,9 +15,7 @@ export interface SendEmailResponse {
 }
 
 export async function sendEmail(data: LeadFormData): Promise<SendEmailResponse> {
-  const apiEndpoint = '/api/email'
-
-  const response = await fetch(apiEndpoint, {
+  const response = await fetch('/api/email', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -27,8 +25,8 @@ export async function sendEmail(data: LeadFormData): Promise<SendEmailResponse> 
 
   const result = await response.json()
 
-  if (!response.ok) {
-    throw new Error(result.error || 'Failed to dispatch inquiry')
+  if (!response.ok || !result.success) {
+    throw new Error(result.error || result.message || 'Unable to send the inquiry right now.')
   }
 
   return result
