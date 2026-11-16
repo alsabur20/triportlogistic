@@ -41,15 +41,20 @@ module.exports = {
   },
   additionalPaths: async (config) => {
     const result = []
+    let client
     try {
       if (process.env.DATABASE_URI) {
         const { Client } = require('pg')
-        const client = new Client({ connectionString: process.env.DATABASE_URI })
+        client = new Client({
+          connectionString: process.env.DATABASE_URI,
+          connectionTimeoutMillis: 5000,
+          query_timeout: 5000,
+          statement_timeout: 5000,
+        })
         await client.connect()
         const res = await client.query(
           "SELECT slug, updated_at FROM posts WHERE status = 'published'"
         )
-        await client.end()
         for (const row of res.rows) {
           result.push({
             loc: `/blog/${row.slug}`,
@@ -62,6 +67,10 @@ module.exports = {
     } catch (err) {
       // Safe fallback if database is not reachable at build time
       console.warn('Could not query published posts for sitemap:', err.message)
+    } finally {
+      await client?.end().catch((err) => {
+        console.warn('Could not close sitemap database connection:', err.message)
+      })
     }
     return result
   },
