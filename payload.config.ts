@@ -32,7 +32,8 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
-      max: 10,
+      // Vercel functions create separate pools; keep the default small for Supabase.
+      max: Number(process.env.DATABASE_POOL_MAX || 1),
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 10000,
       keepAlive: true,
@@ -41,7 +42,7 @@ export default buildConfig({
   plugins: [
     // Automatically use Cloudflare R2 / S3 storage when credentials are provided.
     // Otherwise, falls back gracefully to local public/media/ directory.
-    ...(process.env.R2_BUCKET && process.env.R2_ACCESS_KEY_ID
+    ...(process.env.R2_BUCKET && process.env.R2_ACCESS_KEY_ID && process.env.R2_SECRET_ACCESS_KEY
       ? [
           s3Storage({
             collections: {
@@ -69,4 +70,3 @@ export default buildConfig({
       : []),
   ],
 })
-
